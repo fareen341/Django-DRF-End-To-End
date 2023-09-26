@@ -8,4 +8,4 @@ Get count of views by views, meaning group by using views:
   queryset = Blog.objects.values('views', 'name').annotate(view_count=Count('views'))
 </pre>
 
-#Decorators, kafka, ORM, class & methods
+# Decorators, kafka, ORM, class & methods

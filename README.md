@@ -140,4 +140,41 @@ on_delete, parameters:
 5. DO_NOTHING
 </pre>
 
+# Pandas
+1. DataFrame
+<pre>
+
+import pandas as pd
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'San Francisco', 'Los Angeles']
+}
+
+df = pd.DataFrame(data)
+
+O/p:
+      Name  Age           City
+0    Alice   25       New York
+1      Bob   30  San Francisco
+2  Charlie   35    Los Angeles
+</pre>
+
+2. Series
+<pre>
+import pandas as pd
+# Creating a Series with custom index labels
+data = {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+my_series = pd.Series(data)
+
+# Print the Series
+print(my_series)
+
+O/p:
+Alice      25
+Bob        30
+Charlie    35
+dtype: int64
+</pre>
+
 # Decorators, kafka, ORM, class & methods, DRF

@@ -141,7 +141,7 @@ on_delete, parameters:
 </pre>
 
 # Pandas
-1. DataFrame
+<b>1. DataFrame</b>
 <pre>
 
 import pandas as pd
@@ -160,7 +160,7 @@ O/p:
 2  Charlie   35    Los Angeles
 </pre>
 
-2. Series
+<b>2. Series</b>
 <pre>
 import pandas as pd
 # Creating a Series with custom index labels
@@ -175,6 +175,29 @@ Alice      25
 Bob        30
 Charlie    35
 dtype: int64
+</pre>
+
+<b> Input/Output in pandas</b>
+<pre>
+Reading:
+1. read_csv:
+eg: df = pd.read_csv('data.csv')
+
+2. read_excel
+3. read_json
+4. read_sql
+
+Writing:
+same functions like above but instead of read it is to_csv, to_sql etc
+
+Example: to_csv
+import pandas as pd
+df = {
+        'alpha' : ['a', 'b', 'c', 'd'],
+        'data' : [10, 20, 30, 40]
+     }
+my_series = pd.DataFrame(df)
+my_series.to_csv('output.csv', index=False)
 </pre>
 
 # Decorators, kafka, ORM, class & methods, DRF

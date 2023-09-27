@@ -130,5 +130,14 @@ def send_email_view(request):
     return HttpResponse(f"Email task started with task ID: {result.id}")
 </pre>
 
+# Djangi-models
+<pre>
+on_delete, parameters:
+1. CASCADE: if parent obj is deleted its child obj will get deleted.
+2. PROTECT: will not delete the related object, unless you delete the child obj first.
+3. SET_NULL
+4. SET_DEFAULT
+5. DO_NOTHING
+</pre>
 
 # Decorators, kafka, ORM, class & methods, DRF

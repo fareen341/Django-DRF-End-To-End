@@ -54,4 +54,81 @@ Book.objects.select_related('author').prefetch_related('price_set')
 2. in prefetch_related i can use _set or i can give the name in model field itself, which is related_name = "price
 </pre>
 
+# Django-Celery:
+
+Redis stuff:
+1. Pull redis and run:
+    $ docker pull redis
+    $ docker run --name redis -d redis
+
+2. Check on which ip it is running:
+    $ docker inspect container_id | grep IPAddress
+
+3. create celery.py file: this file should be inside the app, where our views.py file is
+<pre>
+# celery.py
+
+from __future__ import absolute_import, unicode_literals
+import os
+from celery import Celery
+
+# Set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Blog.settings')
+
+app = Celery('Blog')
+
+# Using a string here means the worker doesn't have to serialize
+# the configuration object to child processes.
+app.config_from_object('django.conf:settings', namespace='CELERY')
+
+# Load task modules from all registered Django app configs.
+app.autodiscover_tasks()
+</pre>
+
+4. Edit settings.py file.
+<pre>
+CELERY_BROKER_URL = 'redis://172.17.0.2:6379'
+CELERY_RESULT_BACKEND = 'redis://172.17.0.2:6379'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+</pre>
+
+5. Pip install necessary stuff.
+<pre>
+pip install celery
+pip install redis
+</pre>
+
+6. Create tasks.py file: this file should be in the app, where views.py file is
+<pre>
+# BlogApp/tasks.py
+
+from celery import shared_task
+import time
+
+@shared_task
+def send_email_with_delay(email, message):
+    # Simulate sending an email
+    time.sleep(5)  # Simulate a 5-second delay
+    return f"Email sent to {email}: {message}"
+</pre>
+
+7. views.py
+<pre>
+# BlogApp/views.py
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from BlogApp.tasks import send_email_with_delay
+
+def send_email_view(request):
+    # Trigger the Celery task asynchronously
+    result = send_email_with_delay.delay("fareenansari33@gmail.com", "Hello, Celery!")
+
+    # You can return a response to the user
+    return HttpResponse(f"Email task started with task ID: {result.id}")
+</pre>
+
+
 # Decorators, kafka, ORM, class & methods, DRF

@@ -200,4 +200,95 @@ my_series = pd.DataFrame(df)
 my_series.to_csv('output.csv', index=False)
 </pre>
 
+<b>loc & iloc in pandas</b>
+<pre>
+Indexing:
+<b>loc example:</b>
+
+import pandas as pd
+
+data = {'A': [1, 2, 3, 4, 5],
+        'B': [10, 20, 30, 40, 50],
+        'C': ['apple', 'banana', 'cherry', 'date', 'elderberry']}
+
+df = pd.DataFrame(data, index=['row1', 'row2', 'row3', 'row4', 'row5'])
+
+O/p:
+        A   B          C
+row1  1  10      apple
+row2  2  20    banana
+row3  3  30    cherry
+row4  4  40    date
+row5  5  50    elderberry
+
+selected_data = df.loc[[row], [column]]
+selected_data = df.loc[['row1', 'row3'], ['A', 'C']]
+
+O/p:
+      A   B      C
+row1  1  10  apple
+
+selected_column = df.loc[:, 'B']
+
+<b>iloc: select by integer position.</b>
+Example:
+selected_column = df.iloc[:, 1]
+
+O/p:
+row1    10
+row2    20
+row3    30
+row4    40
+row5    50
+Name: B, dtype: int64
+</pre>
+
+<b>Data Visualization</b>
+<pre>
+Built-in plotting methods like plot(), hist(), boxplot(), etc.
+
+Step 1: Create or load data.
+Step 2: Convert into dataframe/series.
+Step 3: Plot, using df.plot(kind)
+
+Example:
+bar plot:
+import pandas as pd
+data = {'Category': ['A', 'B', 'C'], 'Value': [10, 20, 15]}
+df = pd.DataFrame(data)
+df.plot(x='Category', y='Value', kind='bar')
+
+histogram:
+import pandas as pd
+series = pd.Series([1, 2, 2, 3, 3, 3, 4, 4, 5])
+series.plot(kind='hist', bins=5)
+</pre>
+
+<b>Data Merging and Joining</b>
+<pre>
+We can perform sql like join of two dataframe:
+
+import pandas as pd
+
+left = pd.DataFrame({'key': ['K0', 'K1', 'K2'],
+                    'value_left': [1, 2, 3]})
+
+right = pd.DataFrame({'key': ['K1', 'K2', 'K3'],
+                     'value_right': [4, 5, 6]})
+
+result = pd.merge(left, right, on='key', how='left')  # Left join
+
+O/p:
+key	value_left	value_right
+0	K0	1	NaN
+1	K1	2	4.0
+2	K2	3	5.0
+  
+
+Other parameters of how:
+1. 'inner' for inner join.
+2. 'right' for right join.
+</pre>
+
+
 # Decorators, kafka, ORM, class & methods, DRF

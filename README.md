@@ -300,5 +300,30 @@ K1	A1	B0
 K2	A2	B1
 </pre>
 
+# Numpy
+Numpy is all about numeric calculations, it works well with array, we get maths functions easily in numpy like sqrt, add, sin, power etc, generate range, generate random number.
+<pre>
+import numpy as np
+
+# Creating an array from a Python list
+my_list = [1, 2, 3, 4, 5]
+arr_from_list = np.array(my_list)
+
+# Creating an array filled with zeros
+zeros_array = np.zeros(5)
+
+# Creating a 2D array filled with ones
+ones_array = np.ones((2, 3))
+
+# Creating an array with a range of values
+range_array = np.arange(0, 10, 2)
+
+# Creating a linearly spaced array
+linspace_array = np.linspace(0, 1, 5)
+
+# Creating a random array with values between 0 and 1
+random_array = np.random.rand(3, 4)
+</pre>
+
 
 # Decorators, kafka, ORM, class & methods, DRF

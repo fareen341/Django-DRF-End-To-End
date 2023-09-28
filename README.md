@@ -141,6 +141,7 @@ on_delete, parameters:
 </pre>
 
 # Pandas
+In pandas we have series and dataframe, input/output, data cleaning like missing and null value, merging and joinig and plot.
 <b>1. DataFrame</b>
 <pre>
 
@@ -266,16 +267,15 @@ series.plot(kind='hist', bins=5)
 
 <b>Data Merging and Joining</b>
 <pre>
-We can perform sql like join of two dataframe:
+1. We can perform sql like join of two dataframe:
+2. The how parameter specifies the type of join (inner, outer, left, right).
+3. You can also join multiple DataFrames by chaining .join().
 
 import pandas as pd
-
 left = pd.DataFrame({'key': ['K0', 'K1', 'K2'],
                     'value_left': [1, 2, 3]})
-
 right = pd.DataFrame({'key': ['K1', 'K2', 'K3'],
                      'value_right': [4, 5, 6]})
-
 result = pd.merge(left, right, on='key', how='left')  # Left join
 
 O/p:
@@ -283,11 +283,21 @@ key	value_left	value_right
 0	K0	1	NaN
 1	K1	2	4.0
 2	K2	3	5.0
-  
 
-Other parameters of how:
-1. 'inner' for inner join.
-2. 'right' for right join.
+
+Example 2: using .join()
+  
+import pandas as pd
+left = pd.DataFrame({'A': ['A0', 'A1', 'A2']},
+                    index=['K0', 'K1', 'K2'])
+right = pd.DataFrame({'B': ['B0', 'B1', 'B2']},
+                     index=['K1', 'K2', 'K3'])
+result = left.join(right, how='inner')
+
+O/p:
+	A	B
+K1	A1	B0
+K2	A2	B1
 </pre>
 
 

@@ -54,6 +54,11 @@ Book.objects.select_related('author').prefetch_related('price_set')
 2. in prefetch_related i can use _set or i can give the name in model field itself, which is related_name = "price
 </pre>
 
+<b>Difference between get() and filter()</b>
+<pre>
+filter() is used to fetch multiple records and get() is used to retrive single records.
+</pre>
+
 # Django-Celery:
 
 Redis stuff:

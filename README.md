@@ -371,7 +371,8 @@ iv. Static files are typically served by a separate web server (e.g., Nginx or A
 v. Security features like clickjacking protection are enabled.
 vi. Performance optimizations are often turned on. 
 
-
+<b>gunicorn vs web server</b>
+gunicorn and nginx both are web server, but using both togther is best practice, we can just use gunicorn also for small scale project.
 </pre>
 
 

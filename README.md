@@ -373,6 +373,8 @@ vi. Performance optimizations are often turned on.
 
 <b>gunicorn vs web server</b>
 gunicorn and nginx both are web server, but using both togther is best practice, we can just use gunicorn also for small scale project.
+In practice, the most common and recommended approach for Django applications in a production environment is to use Nginx + Gunicorn. 
+This combination provides a balance between security, performance, and scalability. Nginx handles security and static file serving, while Gunicorn executes Python code.
 </pre>
 
 

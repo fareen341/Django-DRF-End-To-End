@@ -135,7 +135,7 @@ def send_email_view(request):
     return HttpResponse(f"Email task started with task ID: {result.id}")
 </pre>
 
-# Djangi-models
+# Django-models
 <pre>
 on_delete, parameters:
 1. CASCADE: if parent obj is deleted its child obj will get deleted.
@@ -143,6 +143,28 @@ on_delete, parameters:
 3. SET_NULL
 4. SET_DEFAULT
 5. DO_NOTHING
+
+<b>db_index in models</b>b>
+<pre>
+The db_index attribute is used to create database indexes on specific fields to improve query performance when filtering or ordering by those fields.
+Eg:
+product = models.CharField(max_length=13, db_index=True)
+
+<b>Performing complex query:</b>
+1. extra methor:
+queryset = MyModel.objects.extra(select={"custom_field": "SELECT ... FROM ..."})
+
+2. Using F() expressions:
+from django.db.models import F
+queryset = MyModel.objects.filter(field1=F('field2'))
+
+3. Using Q()
+from django.db.models import Q
+queryset = MyModel.objects.filter(Q(field1=value1) | Q(field2=value2))
+
+4. using() function
+queryset = MyModel.objects.using('other_db').filter(...)
+
 </pre>
 
 # Pandas
@@ -336,6 +358,8 @@ random_array = np.random.rand(3, 4)
 makemigrations is used to generate migration files that represent changes to your database schema. It doesn't apply any changes to the database itself. 
 Where as migarte apply those changes.
 </pre>
+
+
 
 
 # Decorators, kafka, ORM, class & methods, DRF

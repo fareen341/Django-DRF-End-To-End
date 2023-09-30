@@ -359,7 +359,20 @@ makemigrations is used to generate migration files that represent changes to you
 Where as migarte apply those changes.
 </pre>
 
+# Django Production/deployment
+<pre>
+In django settings file:
+1. debug = False
+Meaning the django application will run on production if debug is False. In production enviromnet it does:
+i. Django runs in production mode.
+ii. Detailed error pages are replaced with a generic error message to avoid exposing sensitive information to users.
+iii. Automatic code and template reloading are disabled to improve performance.
+iv. Static files are typically served by a separate web server (e.g., Nginx or Apache) or a CDN (Content Delivery Network) for better performance and security.
+v. Security features like clickjacking protection are enabled.
+vi. Performance optimizations are often turned on. 
 
+
+</pre>
 
 
 # Decorators, kafka, ORM, class & methods, DRF

@@ -325,5 +325,12 @@ linspace_array = np.linspace(0, 1, 5)
 random_array = np.random.rand(3, 4)
 </pre>
 
+# Management commad
+<pre>
+-makemigrations vs migrate
+makemigrations is used to generate migration files that represent changes to your database schema. It doesn't apply any changes to the database itself. 
+Where as migarte apply those changes.
+</pre>
+
 
 # Decorators, kafka, ORM, class & methods, DRF

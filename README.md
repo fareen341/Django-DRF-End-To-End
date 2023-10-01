@@ -379,17 +379,14 @@ This combination provides a balance between security, performance, and scalabili
 </pre>
 
 # DRF
-1. Serializers & Deserializers:
+# Serializers & Deserializers:
 Serializers convert complex Python data types (such as Django model instances) into a format that can be easily rendered into JSON, XML, or other content types. Deserializers is vice versa.
 
-2. ViewSet:
-ViewSets automatically generate views for common CRUD operations (e.g., creating, retrieving, updating, deleting) based on the methods you define within the ViewSet class. We have following methods: list(), retrive(), update(), partial_update(), destroy().
-
-2. Routers:
+# Routers:
 1. In Django Rest Framework (DRF), routers are a convenient way to automatically generate URL patterns for your API views, particularly for ViewSets. Routers simplify the process of defining and organizing URL patterns for CRUD (Create, Read, Update, Delete) operations on your API resources. DRF includes a built-in SimpleRouter class that you can use to create default URL patterns for your ViewSets. Here's how routers work in DRF.
 2. We have DefaultRouter 7 SimpleRouter, both have same functionality.
 
-3. Authenticatios - DRF provides:
+# Authenticatios - DRF provides:
 1) BasicAuthentication: uname and pswd(not for prod env).
 2) SessionAuthentication: Django's built-in session framework to authenticate users.
 3) TokenAuthentication:  clients obtain an authentication token to use with API requests.
@@ -417,7 +414,7 @@ def my_function_based_view(request):
 
 </pre>
 
-4. Permissions
+# Permissions
 Permissions are used to grant or deny access for different classes of users to different parts of the API.
 Default permission class is IsAuthenticatedOrReadOnly.
 1. AllowAny: everyone without passwd.
@@ -426,7 +423,7 @@ Default permission class is IsAuthenticatedOrReadOnly.
 4. IsAuthenticationOrReadOnly - authenticated user can perform write permission and other all users(anoymous) can read only.
 
 
-5. Paginator: usefull when we have large amount of data, so reduce the amount of data into chunks.
+# Paginator: usefull when we have large amount of data, so reduce the amount of data into chunks.
 <pre>
 pagination_class = PageNumberPagination
 
@@ -435,7 +432,7 @@ pagination_class = PageNumberPagination
 And so on...
 </pre>
 
-6. api_view() decorator:
+# api_view() decorator:
 
 The @api_view decorator in Django Rest Framework (DRF) is used to define and configure views for your API endpoints in a simple and concise manner. It allows you to create views using function-based views (FBVs) rather than class-based views (CBVs). The primary purpose of the @api_view decorator is to convert a regular Django view function into a DRF-compatible view that can handle HTTP requests and return appropriate responses.
 
@@ -449,7 +446,7 @@ def item_list(request):
 </pre>
 
 
-7. File upload in DRF.
+# File upload in DRF.
 In Django Rest Framework (DRF), handling file uploads is relatively straightforward. You can handle file uploads by using DRF's built-in FileUploadParser or MultiPartParser, combined with serializers and views designed to handle file fields. Here are the steps to handle file uploads in DRF:
 
 <pre>
@@ -488,9 +485,10 @@ class FileUploadView(APIView):
 
 </pre>
 
-8. ViewSet
+# ViewSet:
+ViewSets automatically generate views for common CRUD operations (e.g., creating, retrieving, updating, deleting) based on the methods you define within the ViewSet class. We have following methods: list(), retrive(), update(), partial_update(), destroy().
 
-9. APIView
+# APIView
 The APIView class in Django Rest Framework (DRF) is a foundational component that allows you to create custom API views in a flexible and powerful way. It serves as the base class for creating views that handle HTTP requests and return HTTP responses in a RESTful API. Here are the key aspects and uses of the APIView class. Provides methods for handling different HTTP methods such as GET, POST, PUT, PATCH, DELETE
 
 Example:
@@ -504,7 +502,7 @@ class ItemListView(APIView):
         return Response({'items': items})
 </pre>
 
-10. GenericAPIView.
+# GenericAPIView.
 1. Like it provides the generic functionality unlike in APIView in which we need to provide the custom logic for all methods
 2. GenericAPIView is designed to work with models and provides a set of predefined views for common CRUD (Create, Read, Update, Delete) operations on model instances.
 3. It is often used in combination with DRF mixins like ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, and DestroyAPIView to create views for standard operations.
@@ -533,7 +531,7 @@ path('studentapi/int:pk', views.StudentRetriveUpdateDestroy.as_view()),
 
 </pre>
 
-11. GenericAPIView with mixins.
+# GenericAPIView with mixins.
 In Django Rest Framework (DRF), mixins are classes that provide pre-defined behaviors and functionality that you can include in your views by inheriting from them. When used in conjunction with GenericAPIView, mixins help you create views for common CRUD (Create, Read, Update, Delete) operations with minimal code duplication. Here are some common mixins used with GenericAPIView:
 
 <b>Method 1: using different mixins like CreateModelMixin for creating and another class for update etc.</b>

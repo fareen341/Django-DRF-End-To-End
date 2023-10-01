@@ -388,5 +388,42 @@ ViewSets automatically generate views for common CRUD operations (e.g., creating
 3. Routers:
 In Django Rest Framework (DRF), routers are a convenient way to automatically generate URL patterns for your API views, particularly for ViewSets. Routers simplify the process of defining and organizing URL patterns for CRUD (Create, Read, Update, Delete) operations on your API resources. DRF includes a built-in SimpleRouter class that you can use to create default URL patterns for your ViewSets. Here's how routers work in DRF.
 
+4. DRF provides:
+1) BasicAuthentication: uname and pswd(not for prod env).
+2) SessionAuthentication: Django's built-in session framework to authenticate users.
+3) TokenAuthentication:  clients obtain an authentication token to use with API requests.
+4) RemoteUserAuthentication: 
+5) CustomAuthentication.
+6) Thirt party: JWT Token, many packages are available for this authentication.
+
+Example:
+<pre>
+class based view:
+
+class MyApiView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+function based view: for function based view we need to use decorators:
+
+from rest_framework.decorators import authentication_classes, permission_classes
+
+@authentication_classes([TokenAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def my_function_based_view(request):
+    # Your view logic here
+    return Response({'message': 'Authenticated user can access this endpoint.'})
+
+</pre>
+
+5. Permissions
+Permissions are used to grant or deny access for different classes of users to different parts of the API.
+Default permission class is IsAuthenticatedOrReadOnly.
+1. AllowAny: everyone without passwd.
+2. isAuthenticated: Every users including superuser, normal user, staff user can loging with there username and pswd, and deny if he's unauthenticated. 
+3. IsAdminUser
+4. IsAuthenticationOrReadOnly - authenticated user can perform write permission and other all users(anoymous) can read only.
+
+
 
 # Decorators, kafka, ORM, class & methods, DRF

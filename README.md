@@ -657,5 +657,30 @@ class MyViewSet(viewsets.ModelViewSet):
     # ...
 </pre>
 
+# Filter, Search & Ordering
+1. Filter: used to filter in drf, it gives filter option in UI. 
+2. Search: It gives search option in UI.
+3. Gives ordering option in UI.
+On postman it'll look like this: GET /api/books/?ordering=title sorts books by title in ascending order. And use minus for descending, same for filter and search too on postman.
+<pre>
+Example: 
+from django_filters.rest_framework import DjangoFilterBackend, SearchFilter
+
+class StudentList(ListAPIView):
+	queryset=Student.objects.all()
+	serializer_class=StudentSerializer
+	# filter option
+	filter_backends = [DjangoFilterBackend]
+	filterset_fields = ['city']
+
+	# search option
+	filter_backends = [SearchFilter]
+	search_fields = ['name','city']	
+	
+	# ordering option
+	filter_backends = [OrderingFilter]
+	ordering_fields = ['city']
+</pre>
+
 
 # Decorators, kafka, ORM, class & methods, DRF

@@ -143,6 +143,7 @@ on_delete, parameters:
 3. SET_NULL
 4. SET_DEFAULT
 5. DO_NOTHING
+</pre>
 
 <b>db_index in models</b>b>
 <pre>

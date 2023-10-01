@@ -682,5 +682,26 @@ class StudentList(ListAPIView):
 	ordering_fields = ['city']
 </pre>
 
+# CORS
+1. If you want to run a third-party script in your Django Rest Framework (DRF) application, and that script makes requests to your DRF API from a different domain or origin, you may need to enable Cross-Origin Resource Sharing (CORS) to allow those requests.
+2. We need one package, $ pip install django-cors-headers
+<pre>
+INSTALLED_APPS = [
+    # ...
+    'corsheaders',
+    # ...
+]
+
+MIDDLEWARE = [
+    # ...
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    # ...
+]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin (for development)
+# or specify allowed origins explicitly:
+# CORS_ALLOWED_ORIGINS = ['https://example.com', 'https://another-domain.com']
+</pre>
 
 # Decorators, kafka, ORM, class & methods, DRF

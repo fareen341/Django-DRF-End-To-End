@@ -523,6 +523,8 @@ class MyModelViewSet(viewsets.ModelViewSet):
 
 
 and use router to define urls.
+
+<b>We also have ReadOnlyModelViewSet: only allow list and retrive methods</b>
 </pre>
 
 

@@ -614,4 +614,48 @@ path('studentapi/',views.LCStudent.as_view()),
 path('studentapi/int:pk',views.RUDStudent.as_view()),
 </pre>
 
+# Throttling
+1. Your API might have a restrictive throttle for unauthenticated requests, and a less restrictive throttle for authentication requests.
+2. By default, a user or client making API requests to a DRF view will be limited to 100 requests within a 24-hour period. This is a very low limit and is primarily meant for demonstration and testing purposes.
+3. We have AnonRateThrottle, UserRateThrottle & Scope Rate Throttle.
+	
+<pre>
+For globally
+in settings.py
+REST_FRAMEWORK = {
+'DEFAULT_THROTTLE_CLASSES':[
+'rest_framework.throttling.AnonRateThrottle',
+'rest_framework.throttling.UserRateThrottle'
+],
+'DEFAULT_THROTTLE_RATES':{
+#rates can be include in second, minute, hour or day
+'anon':'100/day',       #only unauthenticated users can only login for 100 times per day
+'user':'1000/day'       #authenticated users can login only 1000 times per day
+}
+}
+</pre>
+
+<b>Scope rate throtte</b>
+<pre>
+Example: this is used when we want to set different throtte limit to different api.
+# settings.py
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_RATES': {
+        'custom_scope_1': '1000/day',    # Example: 1000 requests per day for views with scope 'custom_scope_1'
+        'custom_scope_2': '100/hour',    # Example: 100 requests per hour for views with scope 'custom_scope_2'
+    },
+}
+
+
+class MyView(APIView):
+    throttle_scope = 'custom_scope_1'
+    # ...
+
+class MyViewSet(viewsets.ModelViewSet):
+    throttle_scope = 'custom_scope_2'
+    # ...
+</pre>
+
+
 # Decorators, kafka, ORM, class & methods, DRF

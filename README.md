@@ -488,6 +488,44 @@ class FileUploadView(APIView):
 # ViewSet:
 ViewSets automatically generate views for common CRUD operations (e.g., creating, retrieving, updating, deleting) based on the methods you define within the ViewSet class. We have following methods: list(), retrive(), update(), partial_update(), destroy().
 
+
+# GenericViewSet:
+In Django Rest Framework (DRF), a GenericViewSet is a class-based view that provides a flexible way to define API views for working with Django models. It combines the functionality of several mixins and allows you to create custom views for your models.
+
+<pre>
+from rest_framework import viewsets
+from .models import MyModel
+from .serializers import MyModelSerializer
+
+class MyModelViewSet(viewsets.GenericViewSet, 
+                     viewsets.mixins.ListModelMixin, 
+                     viewsets.mixins.CreateModelMixin,
+                     viewsets.mixins.RetrieveModelMixin,
+                     viewsets.mixins.UpdateModelMixin,
+                     viewsets.mixins.DestroyModelMixin):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
+
+and use router for urls
+</pre>
+
+# ModelViewSet:
+In Django Rest Framework (DRF), a ModelViewSet is a class-based view that combines the functionality of several other classes to simplify the creation of views for Django models. It is a convenient way to create views that perform common CRUD (Create, Read, Update, Delete) operations on a model.
+
+<pre>
+from rest_framework import viewsets
+from .models import MyModel
+from .serializers import MyModelSerializer
+
+class MyModelViewSet(viewsets.ModelViewSet):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
+
+
+and use router to define urls.
+</pre>
+
+
 # APIView
 The APIView class in Django Rest Framework (DRF) is a foundational component that allows you to create custom API views in a flexible and powerful way. It serves as the base class for creating views that handle HTTP requests and return HTTP responses in a RESTful API. Here are the key aspects and uses of the APIView class. Provides methods for handling different HTTP methods such as GET, POST, PUT, PATCH, DELETE
 

@@ -385,10 +385,11 @@ Serializers convert complex Python data types (such as Django model instances) i
 2. ViewSet:
 ViewSets automatically generate views for common CRUD operations (e.g., creating, retrieving, updating, deleting) based on the methods you define within the ViewSet class. We have following methods: list(), retrive(), update(), partial_update(), destroy().
 
-3. Routers:
-In Django Rest Framework (DRF), routers are a convenient way to automatically generate URL patterns for your API views, particularly for ViewSets. Routers simplify the process of defining and organizing URL patterns for CRUD (Create, Read, Update, Delete) operations on your API resources. DRF includes a built-in SimpleRouter class that you can use to create default URL patterns for your ViewSets. Here's how routers work in DRF.
+2. Routers:
+1. In Django Rest Framework (DRF), routers are a convenient way to automatically generate URL patterns for your API views, particularly for ViewSets. Routers simplify the process of defining and organizing URL patterns for CRUD (Create, Read, Update, Delete) operations on your API resources. DRF includes a built-in SimpleRouter class that you can use to create default URL patterns for your ViewSets. Here's how routers work in DRF.
+2. We have DefaultRouter 7 SimpleRouter, both have same functionality.
 
-4. DRF provides:
+3. Authenticatios - DRF provides:
 1) BasicAuthentication: uname and pswd(not for prod env).
 2) SessionAuthentication: Django's built-in session framework to authenticate users.
 3) TokenAuthentication:  clients obtain an authentication token to use with API requests.
@@ -398,13 +399,13 @@ In Django Rest Framework (DRF), routers are a convenient way to automatically ge
 
 Example:
 <pre>
-class based view:
+<b>class based view:</b>
 
 class MyApiView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-function based view: for function based view we need to use decorators:
+<b>function based view: for function based view we need to use decorators:</b>
 
 from rest_framework.decorators import authentication_classes, permission_classes
 
@@ -416,7 +417,7 @@ def my_function_based_view(request):
 
 </pre>
 
-5. Permissions
+4. Permissions
 Permissions are used to grant or deny access for different classes of users to different parts of the API.
 Default permission class is IsAuthenticatedOrReadOnly.
 1. AllowAny: everyone without passwd.
@@ -425,5 +426,154 @@ Default permission class is IsAuthenticatedOrReadOnly.
 4. IsAuthenticationOrReadOnly - authenticated user can perform write permission and other all users(anoymous) can read only.
 
 
+5. Paginator: usefull when we have large amount of data, so reduce the amount of data into chunks.
+<pre>
+pagination_class = PageNumberPagination
+
+/blogposts/?page=1 will return the first page of blog posts.
+/blogposts/?page=2 will return the second page.
+And so on...
+</pre>
+
+6. api_view() decorator:
+
+The @api_view decorator in Django Rest Framework (DRF) is used to define and configure views for your API endpoints in a simple and concise manner. It allows you to create views using function-based views (FBVs) rather than class-based views (CBVs). The primary purpose of the @api_view decorator is to convert a regular Django view function into a DRF-compatible view that can handle HTTP requests and return appropriate responses.
+
+<pre>
+Example:
+
+@api_view(['GET'])  # Decorate the view and specify allowed HTTP methods
+def item_list(request):
+    items = ['item1', 'item2', 'item3']  # Replace with actual data retrieval logic
+    return Response({'items': items})
+</pre>
+
+
+7. File upload in DRF.
+In Django Rest Framework (DRF), handling file uploads is relatively straightforward. You can handle file uploads by using DRF's built-in FileUploadParser or MultiPartParser, combined with serializers and views designed to handle file fields. Here are the steps to handle file uploads in DRF:
+
+<pre>
+Example:
+from rest_framework import serializers
+
+class FileUploadSerializer(serializers.Serializer):
+    file = serializers.FileField()
+
+
+views.py
+from rest_framework.parsers import MultiPartParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class FileUploadView(APIView):
+    parser_classes = [MultiPartParser]
+
+    def post(self, request, *args, **kwargs):
+        serializer = FileUploadSerializer(data=request.data)
+
+        if serializer.is_valid():
+            # Handle the uploaded file, e.g., save it to a specific location
+            uploaded_file = serializer.validated_data['file']
+
+            # You can access file properties like name, size, and content
+            file_name = uploaded_file.name
+            file_size = uploaded_file.size
+
+            # Process the file or perform any desired operations
+            # ...
+
+            return Response({'message': 'File uploaded successfully'})
+        else:
+            return Response(serializer.errors, status=400)
+
+</pre>
+
+8. ViewSet
+
+9. APIView
+The APIView class in Django Rest Framework (DRF) is a foundational component that allows you to create custom API views in a flexible and powerful way. It serves as the base class for creating views that handle HTTP requests and return HTTP responses in a RESTful API. Here are the key aspects and uses of the APIView class. Provides methods for handling different HTTP methods such as GET, POST, PUT, PATCH, DELETE
+
+Example:
+<pre>
+from rest_framework.views import APIView
+
+class ItemListView(APIView):
+    def get(self, request):
+        # Retrieve a list of items (replace with your data retrieval logic)
+        items = ['item1', 'item2', 'item3']
+        return Response({'items': items})
+</pre>
+
+10. GenericAPIView.
+1. Like it provides the generic functionality unlike in APIView in which we need to provide the custom logic for all methods
+2. GenericAPIView is designed to work with models and provides a set of predefined views for common CRUD (Create, Read, Update, Delete) operations on model instances.
+3. It is often used in combination with DRF mixins like ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, and DestroyAPIView to create views for standard operations.
+
+<b>Method 1: using seperate APIViews.</b>
+<pre>
+from rest_framework.generics import GenericAPIView, ListAPIView
+
+class YourModelListView(ListAPIView):
+    queryset = YourModel.objects.all()
+    serializer_class = YourModelSerializer
+</pre>
+
+<b>Method 2: Grouping the views</b>
+<pre>
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView, RetrieveUpdateDestroyAPIView
+
+#If we need Retrive update destroy all together
+class StudentRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
+	queryset=Student.objects.all()
+	serializer_class=StudentSerializer
+
+urls.py
+path('studentapi/', views.StudentListCreate.as_view()),
+path('studentapi/int:pk', views.StudentRetriveUpdateDestroy.as_view()),
+
+</pre>
+
+11. GenericAPIView with mixins.
+In Django Rest Framework (DRF), mixins are classes that provide pre-defined behaviors and functionality that you can include in your views by inheriting from them. When used in conjunction with GenericAPIView, mixins help you create views for common CRUD (Create, Read, Update, Delete) operations with minimal code duplication. Here are some common mixins used with GenericAPIView:
+
+<b>Method 1: using different mixins like CreateModelMixin for creating and another class for update etc.</b>
+
+<pre>
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
+
+class YourModelCreateView(mixins.CreateModelMixin, GenericAPIView):
+    queryset = YourModel.objects.all()
+    serializer_class = YourModelSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+in above code we need to replace self.create with other functions accordingly, like self.update() to update api.
+</pre>
+
+<b>Method 2: grouping the mixins, like create and update togther in one class.</b>
+We can group according to pk. For list and create we dont need pk, rest for all we need pk so group them according to pk.
+
+<pre>
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
+
+class LCStudent(GenericAPIView, ListModelMixin, CreateModelMixin):        #LC: List, Create (pk not required)
+	queryset=Student.objects.all()
+	serializer_class=StudentSerializer
+
+	def get(self, request, *args, **kwargs):
+	    return self.list(request, *args, **kwargs)
+
+	def post(self, request, *args, **kwargs):
+	    return self.create(request, *args, **kwargs)
+
+#update, destroy, retrive: need pk so group them.
+
+urls:
+path('studentapi/',views.LCStudent.as_view()),
+path('studentapi/int:pk',views.RUDStudent.as_view()),
+</pre>
 
 # Decorators, kafka, ORM, class & methods, DRF

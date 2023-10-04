@@ -429,9 +429,9 @@ Instead do the changes in the models file itself and do makemigrations and migra
 </pre>
 
 7. Important Points:
-   i. Always do migration on your app only.
-   ii. Always take backup of your database before doing the migrate cuz migrate will apply the changes on database.
-   iii. Review with team members before applying migrate on production db. 
+   i. Always do migration on your app only.</br>
+   ii. Always take backup of your database before doing the migrate cuz migrate will apply the changes on database.</br>
+   iii. Review with team members before applying migrate on production db. </br>
 
 
 # Django Production/deployment

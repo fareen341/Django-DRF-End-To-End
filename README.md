@@ -59,6 +59,35 @@ Book.objects.select_related('author').prefetch_related('price_set')
 filter() is used to fetch multiple records and get() is used to retrive single records.
 </pre>
 
+<b>Performing complex query.</b>
+1. extra methor:
+<pre>queryset = MyModel.objects.extra(select={"custom_field": "SELECT ... FROM ..."})</pre>
+
+2. Using F() expressions:
+<pre>
+from django.db.models import F
+queryset = MyModel.objects.filter(field1=F('field2'))
+</pre>
+
+3. Using Q()
+<pre>
+from django.db.models import Q
+queryset = MyModel.objects.filter(Q(field1=value1) | Q(field2=value2))
+</pre>
+
+4. using() function
+<pre>queryset = MyModel.objects.using('other_db').filter(...)</pre>
+
+<b>Using exclude vs Q</b>
+<pre>
+# If we want to exclude and filter togther:
+Book.objects.exclude(title="ecs").filter(title="s3")
+
+# we can also use Q
+Book.objects.filter(~Q(title="ecs"), Q(title="s3"))
+</pre>
+
+
 # Django-Celery:
 
 Redis stuff:
@@ -150,22 +179,6 @@ on_delete, parameters:
 The db_index attribute is used to create database indexes on specific fields to improve query performance when filtering or ordering by those fields.
 Eg:
 product = models.CharField(max_length=13, db_index=True)
-
-<b>Performing complex query:</b>
-1. extra methor:
-queryset = MyModel.objects.extra(select={"custom_field": "SELECT ... FROM ..."})
-
-2. Using F() expressions:
-from django.db.models import F
-queryset = MyModel.objects.filter(field1=F('field2'))
-
-3. Using Q()
-from django.db.models import Q
-queryset = MyModel.objects.filter(Q(field1=value1) | Q(field2=value2))
-
-4. using() function
-queryset = MyModel.objects.using('other_db').filter(...)
-
 </pre>
 
 # Pandas

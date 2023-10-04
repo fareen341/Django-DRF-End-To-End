@@ -375,7 +375,8 @@ random_array = np.random.rand(3, 4)
 1. Makemigrations is used to generate migration files that represent changes to your database schema. It doesn't apply any changes to the database itself. 
 2. Where as migarte apply those changes. For example we have added default price as $ 200, so makemigration will created a database schema with default values, but does not change the values of the db. Like i have data in database which has no price, so after migrate changes will get applied and that price will become $ 200 automatically.
 3. It is very important to review migration when working on production db.
-4. Do migratation of your app only and always do show migrations and review migrate:
+4. Here in models first i dont have default value, second time i give default values in models from that migrations onwards the default values will be apply.
+5. Do migratation of your app only and always do show migrations and review migrate:
 <pre>
 $ python manage.py makemigrations myapp
 $ python3 manage.py showmigrations
@@ -385,11 +386,49 @@ $ python manage.py migrate myapp
 
 Warning: this will do the changes on the actual database.
 </pre>
-5. If we want to undo the migrations
+6. If we want to undo the migrations
 <pre>
+First do show migrations:
+$ python3 manage.py show migrations
 
+ [X] 0001_initial
+ [X] 0002_author_book
+ [X] 0003_rename_name_author_auther_name
+ [X] 0004_rename_auther_name_author_name
+ [X] 0005_price
+ [X] 0006_price_book_alter_price_price
+ [X] 0007_alter_book_title
+ [X] 0008_alter_book_title
+ [X] 0009_alter_book_title
+ [X] 0010_person
+ [X] 0011_alter_person_location
+ [X] 0012_alter_person_location
+ [X] 0013_alter_person_location
+
+
+To undo the migrate, this will not change the models file
+$ python3 manage.py migrate BlogApp 0010_person
+
+ [X] 0001_initial
+ [X] 0002_author_book
+ [X] 0003_rename_name_author_auther_name
+ [X] 0004_rename_auther_name_author_name
+ [X] 0005_price
+ [X] 0006_price_book_alter_price_price
+ [X] 0007_alter_book_title
+ [X] 0008_alter_book_title
+ [X] 0009_alter_book_title
+ [X] 0010_person
+ [X] 0011_alter_person_location
+ [X] 0012_alter_person_location
+ [ ] 0013_alter_person_location
+
+The remove of X meaning the unmigrations in done.
+
+Instead do the changes in the models file itself and do makemigrations and migrate
 </pre>
-5. Important Points:
+
+7. Important Points:
    i. Always do migration on your app only.
    ii. Always take backup of your database before doing the migrate cuz migrate will apply the changes on database.
    iii. Review with team members before applying migrate on production db. 

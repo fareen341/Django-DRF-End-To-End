@@ -428,7 +428,7 @@ The remove of X meaning the unmigrations in done.
 Instead do the changes in the models file itself and do makemigrations and migrate
 </pre>
 
-7. Important Points:
+7. Important Points: </br>
    i. Always do migration on your app only.</br>
    ii. Always take backup of your database before doing the migrate cuz migrate will apply the changes on database.</br>
    iii. Review with team members before applying migrate on production db. </br>

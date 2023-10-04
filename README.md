@@ -275,6 +275,7 @@ Name: B, dtype: int64
 <b>Data Visualization</b>
 <pre>
 Built-in plotting methods like plot(), hist(), boxplot(), etc.
+For this to work we need matplotlab module.
 
 Step 1: Create or load data.
 Step 2: Convert into dataframe/series.
@@ -283,12 +284,16 @@ Step 3: Plot, using df.plot(kind)
 Example:
 bar plot:
 import pandas as pd
+import matplotlib.pyplot as plt
 data = {'Category': ['A', 'B', 'C'], 'Value': [10, 20, 15]}
 df = pd.DataFrame(data)
 df.plot(x='Category', y='Value', kind='bar')
+OR
+plt.show()
 
 histogram:
 import pandas as pd
+import matplotlib.pyplot as plt
 series = pd.Series([1, 2, 2, 3, 3, 3, 4, 4, 5])
 series.plot(kind='hist', bins=5)
 </pre>

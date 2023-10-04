@@ -371,12 +371,29 @@ linspace_array = np.linspace(0, 1, 5)
 random_array = np.random.rand(3, 4)
 </pre>
 
-# Management commad
+# Management commad (makemigrations vs migrate)
+1. Makemigrations is used to generate migration files that represent changes to your database schema. It doesn't apply any changes to the database itself. 
+2. Where as migarte apply those changes. For example we have added default price as $ 200, so makemigration will created a database schema with default values, but does not change the values of the db. Like i have data in database which has no price, so after migrate changes will get applied and that price will become $ 200 automatically.
+3. It is very important to review migration when working on production db.
+4. Do migratation of your app only and always do show migrations and review migrate:
 <pre>
--makemigrations vs migrate
-makemigrations is used to generate migration files that represent changes to your database schema. It doesn't apply any changes to the database itself. 
-Where as migarte apply those changes.
+$ python manage.py makemigrations myapp
+$ python3 manage.py showmigrations
+
+Review recent migrations and apply:
+$ python manage.py migrate myapp
+
+Warning: this will do the changes on the actual database.
 </pre>
+5. If we want to undo the migrations
+<pre>
+
+</pre>
+5. Important Points:
+   i. Always do migration on your app only.
+   ii. Always take backup of your database before doing the migrate cuz migrate will apply the changes on database.
+   iii. Review with team members before applying migrate on production db. 
+
 
 # Django Production/deployment
 <pre>

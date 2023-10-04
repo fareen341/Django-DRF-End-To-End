@@ -614,6 +614,10 @@ path('studentapi/',views.LCStudent.as_view()),
 path('studentapi/int:pk',views.RUDStudent.as_view()),
 </pre>
 
+<b>JWT Steps</b>
+Refer old repo.
+
+
 # Throttling
 1. Your API might have a restrictive throttle for unauthenticated requests, and a less restrictive throttle for authentication requests.
 2. By default, a user or client making API requests to a DRF view will be limited to 100 requests within a 24-hour period. This is a very low limit and is primarily meant for demonstration and testing purposes.

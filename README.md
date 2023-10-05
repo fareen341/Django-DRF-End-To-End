@@ -698,6 +698,7 @@ Refer old repo.
 1. Your API might have a restrictive throttle for unauthenticated requests, and a less restrictive throttle for authentication requests.
 2. By default, a user or client making API requests to a DRF view will be limited to 100 requests within a 24-hour period. This is a very low limit and is primarily meant for demonstration and testing purposes.
 3. We have AnonRateThrottle, UserRateThrottle & Scope Rate Throttle.
+4. In most cases, when a user refreshes a web page in their browser, it typically generates a new HTTP request to the server. This new request is treated as a separate request by the server and, depending on your server's configuration and any rate limiting or throttling mechanisms in place, it may count as an additional request.
 	
 <pre>
 For globally

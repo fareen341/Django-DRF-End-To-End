@@ -419,8 +419,8 @@ $ python3 manage.py migrate BlogApp 0010_person
  [X] 0008_alter_book_title
  [X] 0009_alter_book_title
  [X] 0010_person
- [X] 0011_alter_person_location
- [X] 0012_alter_person_location
+ [ ] 0011_alter_person_location
+ [ ] 0012_alter_person_location
  [ ] 0013_alter_person_location
 
 The remove of X meaning the unmigrations in done.

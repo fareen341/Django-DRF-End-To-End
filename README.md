@@ -1098,6 +1098,8 @@ else:
 # Interview Questions
 <b>Python</b>
 1. Difference between method and class?
+2. What is dunder method?
+3. What is __init__ in python?
 
 <b>Django</b>
 1. Difference between Abstract base class inheritance, Multi-table inheritance, Proxy Model?
@@ -1109,7 +1111,7 @@ else:
 7. Generic view in django?
 8. Does django support multiple primary key, if not how to achive this?
 9. Queryset in django?
-10. Request response lifecycle.
+10. Request response lifecycle?
 11. ORM:
 <pre>
 i. Difference between select_related & prefetch related.
@@ -1125,6 +1127,17 @@ iv. How to group by.
 
 # Interview Questions with answer:
 <b>Python</b>
+1. What is dunder method?
+<pre>
+A method has double underscore before and after, these are special methods in python.
+Example, __str__(), __init__(), __repr__() etc
+</pre>
+
+2. What is __init__() method?
+<pre>
+It is the first method which is called in python, it constructor in python. 
+Use it when you want to pass some initial values in python.
+</pre>
 
 <b>Django Ansswers</b>
 1. Difference between method and class?

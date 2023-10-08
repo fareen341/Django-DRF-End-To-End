@@ -1001,6 +1001,13 @@ It is the constructor for the class, and it allows you to perform any necessary 
 1. 2 + 3 * 4 ** 2 / 2
 2. 3 ** 3 ** 2
 </pre>
+7. Find a number is armstrong or not.
+<pre>
+Cube of all numbers and addition will give the same number.
+For example, let's take the 3-digit number 153:
+
+1 + 125 + 27 = 153
+</pre>
 
 # Program with solution
 1. Shortest way to check for pallindrome.

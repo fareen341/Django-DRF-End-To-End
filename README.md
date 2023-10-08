@@ -1,220 +1,6 @@
 
 # This repository contains the things to learn for python developer job, read all below stuff is enpugh, foo python, django and DRF.
 
-# Python Basics:
-We have str, list, tuple, set and dict. </br>
-<b>Operations on list</b>
-<pre>
-Functions of list:
-li = [1,2,8,4,9,3]
-
-1. copy() function:
-eg: new_li = li.copy()        # new_li will be same as li
-
-2. reverse() function:
-eg: li.reverse()        # [3, 9, 4, 8, 2, 1]
-
-3. sort() function:
-eg: li.sort()         # [1, 2, 3, 4, 8, 9]
-
-4. remove() function:    it'll remove one item at a time, if we have two '3''s then it'll remove the first occurance from left to right.
-li.remove(1)        # [2, 3, 4, 8, 9]
-
-5. count() function:
-li.count(3)            # 1
-
-6. len()
-len(li)        # 7
-</pre>
-
-<b>Operations on set</b>
-1. insertion order are not preserved
-2. duplicate are not allowed
-3. indicated by{}
-4. set item are not indexed so slicing and indexing not allowed
-5. immutable
-6. we can add and remove item in set but cannot change the value by using index.
-7. main fucntionality of set is, union, difference & intersetion
-<pre>
-Example:
-Union:
-a={1,2,3,4,5}
-b={4,5,6,7,8,9}
-c = a | b      # Output: {1, 2, 3, 4, 5, 6, 7, 8, 9}
-
-Intersetion:
-set1 = {1, 2, 3}
-set2 = {3, 4, 5}
-intersection_set = set1 & set2
-print(intersection_set)  # Output: {3}
-
-Difference:
-set1 = {1, 2, 3, 4, 5}
-set2 = {3, 4, 5, 6, 7}
-difference_set = set1 - set2
-print(difference_set)  # Output: {1, 2}
-</pre>
-
-<b>Operations on dict</b>
-1. duplicated keys are not allowed
-2. indexing and slicing not allowed
-3. we can check the value of a perticuar key by giving its key
-<pre>
-
-d = {"red": 1, "blue": 2, "pink": 3, "black": 4}
-
-<b>Get the keys.</b>
-d.keys()         # dict_keys(['red', 'blue', 'pink', 'black'])
-
-<b>Get the values.</b>
-d.values()        # dict_values([1, 2, 3, 4])
-
-<b>Get the values using get().</b>
-d.get("red", "black")        # 1
-d.get("cyan", "black")       # black
-
-<b>Update the value of a key, or update the dict.</b>
-d["red"] = 55                           # {'red': 55, 'blue': 2, 'pink': 3, 'black': 4}
-d.update({"new_color": "green"})        # {'red': 5, 'blue': 2, 'pink': 3, 'black': 4, 'new_color': 'green'}
-</pre>
-
-<b>Map, Filter, Reduce</b>
-1. Map: Used when we want to do operation on all items on a list.
-2. Filter: Used when we want to do operations to get a single values, example to get the greatest value etc.
-3. Reduce: When we want to get one values, example sum etc.
-
-<b>Operations on string</b>
-<pre>
-Slicing:
-
-name = "fareen"
-name[::-1]    # reverse string neeraf
-
-In positive i.e from left to right it add -1, and for negative from right to left it does +1
-Example:
-name[0:3]        # far
-name[0:-3]        # far
-
-</pre>
-
-<b>Operators</b>
-<pre>
-<b>1. Arithmetic operator: </b>
-/ is used for getting the actual division like we get in calculator, // is used to get quotent and % is used for getting the reminder. 
-
-/ : used for divide		# always give floating value, will calculate the normal division
-Example:
-a=10
-b=3
-print(a / b)			# 3.3333333333333335
-
-//: used for quotent
-Example:
-a=10
-b=3
-print(a // b)			# 3
-
-%: used for reminder
-a=8
-b=3
-print(a % b)			# 2
-
-<b>Logical Operator: and, or and not</b>
-If we do:
-a = 10
-b = 20
-
-print(a and b)		# 20
-
-It gave left hand value, we need to give condition in both side, like a > 10 and b < 20, likewise.
-
-<b>Opeartor and precedence in python. All have left to right</b>
-1. ()
-2. **			# only this have right to left precedence
-3. * / % //
-4. + -
-
-Question: 5 * 2 // 2 * (2 + 3)
-So going for bracket first:	5 * 2 // 2 * 5
-Now braket done, now go from left to right cuz all have same precedence.
-So o/p:  10 // 2 = 5,   5 * 5 = 25
-
-<b>in and is in python.</b>
-For string: name = "fareen",  
-'a' in name		# True
-
-For lits: nums = [1,2,3,4,5,6]
-1 in nums		# True
-
-is is used to check for memory location, two values such as:
-a = 10, b = 10
-print(a is b)			# True, cuz values is same but when b = 20 the it'll be False
-</pre>
-
-<b>Extra functions:</b>
-<pre>
-1. Memory location
-a = 10
-id(a)			# will give memory location of a
-
-2. chr() function, to get number from unicode
-chr(65)			# A
-
-3. ord() function to get unicode from character
-ord('A')		# 65
-
-4. floor and ceil
-from math import floor, ceil
-
-floor(4.5)		# 4
-floor(4.8)		# 4
-
-ceil(4.5)		# 5
-ceil(4.1)		# 5
-</pre>
-
-<b>Extra points</b>
-<pre>
-1. Floating point error:
-0.1 + 0.2			# 0.30000000000000004
-
-Getting wong error, we should get 0.3
-
-2. When we do -4 // 3, we should get one as quotent, but we get -2, 
--4 // 3		# -2
-
-This is cuz it does the floor division, in case of minus floor acts as ceil and vice versa.
-</pre>
-
-# Programs Practice
-1. Get the 2nd larget value in a list
-2. The given list ["abc", "def"] convert the list in [["a", "b", "c"], ["d", "e", "f"]].
-3. Reverse the name "fareen".
-4. Fine a pallindrome.
-5. Print pattern:
-<pre>
-*
-**
-***
-****
-*****
-</pre>
-6. What is the output: 
-<pre>
-1. 2 + 3 * 4 ** 2 / 2
-2. 3 ** 3 ** 2
-</pre>
-
-# Program with solution
-1. Shortest way to check for pallindrome.
-<pre>
-name = "madam"
-if name == name[::-1]:
-	print("pallindrome")
-else:
-	print("not a pallindrome")	
-</pre>
-
 # Django ORM
 1. Group By: Get count of views by views, meaning group by using views:
 <pre>
@@ -1001,5 +787,230 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin (for development
 # or specify allowed origins explicitly:
 # CORS_ALLOWED_ORIGINS = ['https://example.com', 'https://another-domain.com']
 </pre>
+
+
+# Python Basics:
+We have str, list, tuple, set and dict. </br>
+<b>Operations on list</b>
+<pre>
+Functions of list:
+li = [1,2,8,4,9,3]
+
+1. copy() function:
+eg: new_li = li.copy()        # new_li will be same as li
+
+2. reverse() function:
+eg: li.reverse()        # [3, 9, 4, 8, 2, 1]
+
+3. sort() function:
+eg: li.sort()         # [1, 2, 3, 4, 8, 9]
+
+4. remove() function:    it'll remove one item at a time, if we have two '3''s then it'll remove the first occurance from left to right.
+li.remove(1)        # [2, 3, 4, 8, 9]
+
+5. count() function:
+li.count(3)            # 1
+
+6. len()
+len(li)        # 7
+</pre>
+
+<b>Operations on set</b>
+1. insertion order are not preserved
+2. duplicate are not allowed
+3. indicated by{}
+4. set item are not indexed so slicing and indexing not allowed
+5. immutable
+6. we can add and remove item in set but cannot change the value by using index.
+7. main fucntionality of set is, union, difference & intersetion
+<pre>
+Example:
+Union:
+a={1,2,3,4,5}
+b={4,5,6,7,8,9}
+c = a | b      # Output: {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+Intersetion:
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+intersection_set = set1 & set2
+print(intersection_set)  # Output: {3}
+
+Difference:
+set1 = {1, 2, 3, 4, 5}
+set2 = {3, 4, 5, 6, 7}
+difference_set = set1 - set2
+print(difference_set)  # Output: {1, 2}
+</pre>
+
+<b>Operations on dict</b>
+1. duplicated keys are not allowed
+2. indexing and slicing not allowed
+3. we can check the value of a perticuar key by giving its key
+<pre>
+
+d = {"red": 1, "blue": 2, "pink": 3, "black": 4}
+
+<b>Get the keys.</b>
+d.keys()         # dict_keys(['red', 'blue', 'pink', 'black'])
+
+<b>Get the values.</b>
+d.values()        # dict_values([1, 2, 3, 4])
+
+<b>Get the values using get().</b>
+d.get("red", "black")        # 1
+d.get("cyan", "black")       # black
+
+<b>Update the value of a key, or update the dict.</b>
+d["red"] = 55                           # {'red': 55, 'blue': 2, 'pink': 3, 'black': 4}
+d.update({"new_color": "green"})        # {'red': 5, 'blue': 2, 'pink': 3, 'black': 4, 'new_color': 'green'}
+</pre>
+
+<b>Map, Filter, Reduce</b>
+1. Map: Used when we want to do operation on all items on a list.
+2. Filter: Used when we want to do operations to get a single values, example to get the greatest value etc.
+3. Reduce: When we want to get one values, example sum etc.
+
+<b>Operations on string</b>
+<pre>
+Slicing:
+
+name = "fareen"
+name[::-1]    # reverse string neeraf
+
+In positive i.e from left to right it add -1, and for negative from right to left it does +1
+Example:
+name[0:3]        # far
+name[0:-3]        # far
+
+</pre>
+
+<b>Operators</b>
+<pre>
+<b>1. Arithmetic operator: </b>
+/ is used for getting the actual division like we get in calculator, // is used to get quotent and % is used for getting the reminder. 
+
+/ : used for divide		# always give floating value, will calculate the normal division
+Example:
+a=10
+b=3
+print(a / b)			# 3.3333333333333335
+
+//: used for quotent
+Example:
+a=10
+b=3
+print(a // b)			# 3
+
+%: used for reminder
+a=8
+b=3
+print(a % b)			# 2
+
+<b>Logical Operator: and, or and not</b>
+If we do:
+a = 10
+b = 20
+
+print(a and b)		# 20
+
+It gave left hand value, we need to give condition in both side, like a > 10 and b < 20, likewise.
+
+<b>Opeartor and precedence in python. All have left to right</b>
+1. ()
+2. **			# only this have right to left precedence
+3. * / % //
+4. + -
+
+Question: 5 * 2 // 2 * (2 + 3)
+So going for bracket first:	5 * 2 // 2 * 5
+Now braket done, now go from left to right cuz all have same precedence.
+So o/p:  10 // 2 = 5,   5 * 5 = 25
+
+<b>in and is in python.</b>
+For string: name = "fareen",  
+'a' in name		# True
+
+For lits: nums = [1,2,3,4,5,6]
+1 in nums		# True
+
+is is used to check for memory location, two values such as:
+a = 10, b = 10
+print(a is b)			# True, cuz values is same but when b = 20 the it'll be False
+</pre>
+
+<b>Extra functions:</b>
+<pre>
+1. Memory location
+a = 10
+id(a)			# will give memory location of a
+
+2. chr() function, to get number from unicode
+chr(65)			# A
+
+3. ord() function to get unicode from character
+ord('A')		# 65
+
+4. floor and ceil
+from math import floor, ceil
+
+floor(4.5)		# 4
+floor(4.8)		# 4
+
+ceil(4.5)		# 5
+ceil(4.1)		# 5
+</pre>
+
+<b>Extra points</b>
+<pre>
+1. Floating point error:
+0.1 + 0.2			# 0.30000000000000004
+
+Getting wong error, we should get 0.3
+
+2. When we do -4 // 3, we should get one as quotent, but we get -2, 
+-4 // 3		# -2
+
+This is cuz it does the floor division, in case of minus floor acts as ceil and vice versa.
+
+3. The __init__ method: it is called automatically when you create a new instance of a class (an object). 
+It is the constructor for the class, and it allows you to perform any necessary setup or initialization for the object.
+</pre>
+
+<b>Function in python.</b>
+<pre>
+1. Non default argument should be after. Example: def sum(x, y, z=10).
+2. In case of args and kwargs, args should come first then kwargs, args support list, tuple, kwargs support python dict. def nums(*args, **kwargs).
+</pre>
+
+# Programs Practice
+1. Get the 2nd larget value in a list
+2. The given list ["abc", "def"] convert the list in [["a", "b", "c"], ["d", "e", "f"]].
+3. Reverse the name "fareen".
+4. Fine a pallindrome.
+5. Print pattern:
+<pre>
+*
+**
+***
+****
+*****
+</pre>
+6. What is the output: 
+<pre>
+1. 2 + 3 * 4 ** 2 / 2
+2. 3 ** 3 ** 2
+</pre>
+
+# Program with solution
+1. Shortest way to check for pallindrome.
+<pre>
+name = "madam"
+if name == name[::-1]:
+	print("pallindrome")
+else:
+	print("not a pallindrome")	
+</pre>
+
 
 # Decorators, kafka, ORM, class & methods, DRF

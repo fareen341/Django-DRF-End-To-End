@@ -138,6 +138,28 @@ Question: 5 * 2 // 2 * (2 + 3)
 So going for bracket first:	5 * 2 // 2 * 5
 Now braket done, now go from left to right cuz all have same precedence.
 So o/p:  10 // 2 = 5,   5 * 5 = 25
+
+<b>in and is in python.</b>
+For string: name = "fareen",  
+'a' in name		# True
+
+For lits: nums = [1,2,3,4,5,6]
+1 in nums		# True
+
+is is used to check for memory location, two values such as:
+a = 10, b = 10
+print(a is b)			# True, cuz values is same but when b = 20 the it'll be False
+
+<b>Extra functions:</b>
+1. Memory location
+a = 10
+id(a)			# will give memory location of a
+
+2. chr() function, to get number from unicode
+chr(65)			# A
+
+3. ord() function to get unicode from character
+ord('A')		# 65
 </pre>
 
 

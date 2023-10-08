@@ -436,6 +436,56 @@ Instead do the changes in the models file itself and do makemigrations and migra
    ii. Always take backup of your database before doing the migrate cuz migrate will apply the changes on database.</br>
    iii. Review with team members before applying migrate on production db. </br>
 
+# Inheritance in django models.
+1. Abstract base class inheritance.
+<pre>
+1. We use this when we want a common class as in, in school db name and age will be common.
+2. It'll become abstract base class when we write abstract = True.
+3. No table will be created for abstract base class.
+
+Example:
+Parent class
+
+class CommonInfo(models.Model):
+	name = models.CharField(max_length = 70)
+	age = models.IntegerField
+	
+	class Meta:
+		abstract = True
+
+Child class
+
+class Student(CommonInfo):
+	fees = models.IntegerField()
+</pre>
+
+2. Proxy Model.
+i. Proxy Model and Abstract class both are same, but the main difference is in there concept. Use abstract class when we want to have common fields for multiple tables. Use proxy model when we want to inherit functionality of parent to child, it does not follow concept like use it for common fields, instead it is basically inheritance.  </br>
+ii. Both the parent and child class share the same database table.  </br>
+iii. It become proxy when we give proxy = True.
+
+3. Multi-table Inheritance
+<pre>
+1. The structure of this is same as abstract, here both will have seperate database table.
+2. The parent and child will maintain one to one relation.
+3. Passport table and person table both will have one to one relation.
+Example:
+
+
+Parent class 
+
+class PersonDetail(models.Model):
+	name = models.CharField(max_length = 70)
+	age = models.InetegerField()
+
+
+Child class
+
+class PassportDetail(PersonDetails):
+	passport_no = models.IntegerField()
+</pre>
+
+
 
 # Django Production/deployment
 <pre>
@@ -1033,5 +1083,23 @@ else:
 	print("not a pallindrome")	
 </pre>
 
+# Interview Questions
+<b>Python</b>
+1. Difference between method and class?
+
+<b>Django</b>
+1. Difference between Abstract base class inheritance, Multi-table inheritance, Proxy Model?
+
+
+<b>DRF</b>
+1. Difference between put and patch?
+
+
+
+# Interview Questions with answer:
+1. Difference between method and class?
+<pre>
+If it is inside the class then it is called as method and if it is outside of class the called as function.
+</pre>
 
 # Decorators, kafka, ORM, class & methods, DRF

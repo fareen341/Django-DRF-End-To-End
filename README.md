@@ -102,7 +102,6 @@ name[0:-3]        # far
 <b>1. Arithmetic operator: </b>
 / is used for getting the actual division like we get in calculator, // is used to get quotent and % is used for getting the reminder. 
 
-
 / : used for divide		# always give floating value, will calculate the normal division
 Example:
 a=10
@@ -155,7 +154,11 @@ So o/p:  10 // 2 = 5,   5 * 5 = 25
 ****
 *****
 </pre>
-6. What is the output: 5 * 2 // 2 * (2 + 3)
+6. What is the output: 
+<pre>
+1. 2 + 3 * 4 ** 2 / 2
+2. 3 ** 3 ** 2
+</pre>
 
 # Program with solution
 1. Shortest way to check for pallindrome.

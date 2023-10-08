@@ -1014,6 +1014,14 @@ Calculate each digit raised to the third power, it is pow of 3 not num ** 3:
 
 1 + 125 + 27 = 153
 </pre>
+7. Remove duplicate from a list num_list = [3,4,6,3,4,7].
+8. Length of last word str = "python is great, it has many features".
+9. In the given list arr = [5, 32, 45, 4, 12, 18, 25], do minus of first element with second.
+10. Find all the pairs which has sum = 17 in the given list arr = [5, 7, 4, 3, 9, 8, 19, 21].
+11. Find all the missing values in list arr = [1,2,3,5,6,7,8,10,17].
+12. Convert two list into dict x = [1,2,3,4], y = ["a", "b", "c", "d"].
+13. Find the count of word "python" in the given string, str = "python is great, it has many features, python".
+14. Find the common element in two str, name = "Seema" and name = "FarEen", by repetation of words and without repetation also. Also ignoring the case.
 
 # Program with solution
 1. Shortest way to check for pallindrome.

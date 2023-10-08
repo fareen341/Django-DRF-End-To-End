@@ -486,7 +486,18 @@ class PassportDetail(PersonDetails):
 	passport_no = models.IntegerField()
 </pre>
 
+# Django Generic View
+Django generic view provides some common functionality for CRUD operations. Like ListView, CreateView, DetailView, UpdateView, DeleteView.
+Example:
+<pre>
+from django.views.generic.edit import UpdateView
+from .models import MyModel
 
+class MyModelUpdateView(UpdateView):
+    model = MyModel
+    template_name = 'myapp/mymodel_form.html'
+    fields = ['field1', 'field2']
+</pre>
 
 # Django Production/deployment
 <pre>
@@ -1090,7 +1101,22 @@ else:
 
 <b>Django</b>
 1. Difference between Abstract base class inheritance, Multi-table inheritance, Proxy Model?
-
+2. Difference between django-admin and manage.py?
+3. What are the common excptions in django?
+4. Authentication & Authorization in Django?
+5. Django Security?
+6. Django Middleware?
+7. Generic view in django?
+8. Does django support multiple primary key, if not how to achive this?
+9. Queryset in django?
+10. Request response lifecycle.
+11. ORM:
+<pre>
+i. Difference between select_related & prefetch related.
+ii. Use of Q().
+iii. Use of F().
+iv. How to group by.
+</pre>
 
 <b>DRF</b>
 1. Difference between put and patch?
@@ -1098,9 +1124,62 @@ else:
 
 
 # Interview Questions with answer:
+<b>Python</b>
+
+<b>Django Ansswers</b>
 1. Difference between method and class?
 <pre>
 If it is inside the class then it is called as method and if it is outside of class the called as function.
 </pre>
+2. Difference between django-admin and manage.py?
+<pre>
+Both are command-line utility provided by django. django-admin is used for administrative tasks.
+</pre>
+3. What are the common exceptions in django?
+<pre>
+ObjectDoesNotExist, PermissionDenied, IntegrityError etc
+</pre>
+4. Authentication & Authorization in Django?
+<pre>
+Django provides build-in Authentication, along with Authentication it also provide authorization like users, groups & permissions etc
+</pre>
+5. Django Security?
+<pre>
+Django automatically provides some coommon security issues like:
+i. SQL injection attack cuz we use ORM.
+
+ii. CSRF attack:  CSRF protection ensures that actions initiated by a user, such as submitting a form or making a request, 
+are only accepted if they come from a trusted source, and not from a malicious website or attacker-controlled source. 
+
+iii. Pswd hashing
+
+iv. Authentication & Authorization
+
+v. XSS protection: XSS attacks occur when an attacker injects malicious scripts (usually JavaScript) into web pages viewed 
+by other users. These scripts can then execute within the context of the victim's browser, potentially stealing user data, 
+hijacking sessions, or performing other malicious actions.
+
+Along with these security, we should make our web server secure also, cuz request first hit web server so we can avoid DDOS 
+at web server level and continue.
+</pre>
+
+6. Middleware in django?
+<pre>
+Django provide some middleware like session, message & csrf middleware, along with that we can have custom middleware also.
+</pre>
+
+8. Does django support multiple primary key?
+<pre>
+Django does not support multiple column primary key by default, to achieve this we can use unique_together instead
+</pre>
+
+9. Queryset in django?
+<pre>
+Querysets are used for retrieving, updating, or deleting data from the database using Django's Object-Relational Mapping (ORM) system.
+In short queryset is used to work with database using ORM.
+</pre>
+
+<b>DRF</b>
+
 
 # Decorators, kafka, ORM, class & methods, DRF

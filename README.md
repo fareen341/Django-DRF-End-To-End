@@ -459,10 +459,11 @@ class Student(CommonInfo):
 	fees = models.IntegerField()
 </pre>
 
-2. Proxy Model.
+2. Proxy Model.</br>
 i. Proxy Model and Abstract class both are same, but the main difference is in there concept. Use abstract class when we want to have common fields for multiple tables. Use proxy model when we want to inherit functionality of parent to child, it does not follow concept like use it for common fields, instead it is basically inheritance.  </br>
 ii. Both the parent and child class share the same database table.  </br>
-iii. It become proxy when we give proxy = True.
+iii. It become proxy when we give proxy = True. </br>
+iv. The class which have proxy = True or abstract = True, there table won't be created.</br>
 
 3. Multi-table Inheritance
 <pre>

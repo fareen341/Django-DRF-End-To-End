@@ -1006,6 +1006,12 @@ It is the constructor for the class, and it allows you to perform any necessary 
 Cube of all numbers and addition will give the same number.
 For example, let's take the 3-digit number 153:
 
+Calculate each digit raised to the third power, it is pow of 3 not num ** 3:
+
+1^3 = 1
+5^3 = 125
+3^3 = 27
+
 1 + 125 + 27 = 153
 </pre>
 

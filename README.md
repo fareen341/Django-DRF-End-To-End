@@ -149,8 +149,10 @@ For lits: nums = [1,2,3,4,5,6]
 is is used to check for memory location, two values such as:
 a = 10, b = 10
 print(a is b)			# True, cuz values is same but when b = 20 the it'll be False
+</pre>
 
 <b>Extra functions:</b>
+<pre>
 1. Memory location
 a = 10
 id(a)			# will give memory location of a
@@ -160,8 +162,13 @@ chr(65)			# A
 
 3. ord() function to get unicode from character
 ord('A')		# 65
-</pre>
 
+4. floor and ceil
+from math import floor, ceil
+
+floor(4.5)		# 4
+ceil(4.5)		# 5
+</pre>
 
 # Programs Practice
 1. Get the 2nd larget value in a list

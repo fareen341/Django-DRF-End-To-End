@@ -167,7 +167,23 @@ ord('A')		# 65
 from math import floor, ceil
 
 floor(4.5)		# 4
+floor(4.8)		# 4
+
 ceil(4.5)		# 5
+ceil(4.1)		# 5
+</pre>
+
+<b>Extra points</b>
+<pre>
+1. Floating point error:
+0.1 + 0.2			# 0.30000000000000004
+
+Getting wong error, we should get 0.3
+
+2. When we do -4 // 3, we should get one as quotent, but we get -2, 
+-4 // 3		# -2
+
+This is cuz it does the floor division, in case of minus floor acts as ceil and vice versa.
 </pre>
 
 # Programs Practice

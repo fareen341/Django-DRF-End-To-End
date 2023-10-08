@@ -131,8 +131,9 @@ It gave left hand value, we need to give condition in both side, like a > 10 and
 
 <b>Opeartor and precedence in python. All have left to right</b>
 1. ()
-2. * / % //
-3. + -
+2. **			# only this have right to left precedence
+3. * / % //
+4. + -
 
 Question: 5 * 2 // 2 * (2 + 3)
 So going for bracket first:	5 * 2 // 2 * 5

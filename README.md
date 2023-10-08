@@ -128,6 +128,16 @@ b = 20
 print(a and b)		# 20
 
 It gave left hand value, we need to give condition in both side, like a > 10 and b < 20, likewise.
+
+<b>Opeartor and precedence in python. All have left to right</b>
+1. ()
+2. * / % //
+3. + -
+
+Question: 5 * 2 // 2 * (2 + 3)
+So going for bracket first:	5 * 2 // 2 * 5
+Now braket done, now go from left to right cuz all have same precedence.
+So o/p:  10 // 2 = 5,   5 * 5 = 25
 </pre>
 
 
@@ -144,6 +154,7 @@ It gave left hand value, we need to give condition in both side, like a > 10 and
 ****
 *****
 </pre>
+6. What is the output: 5 * 2 // 2 * (2 + 3)
 
 # Program with solution
 1. Shortest way to check for pallindrome.

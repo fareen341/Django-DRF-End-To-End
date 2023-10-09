@@ -1099,7 +1099,8 @@ else:
 <b>Python</b>
 1. Difference between method and class?
 2. What is dunder method?
-3. What is __init__ in python?
+3. What is `__init__()` in python?
+4. Difference betweeb `__init__()` method and `__init__.py` file?
 
 <b>Django</b>
 1. Difference between Abstract base class inheritance, Multi-table inheritance, Proxy Model?
@@ -1119,11 +1120,23 @@ ii. Use of Q().
 iii. Use of F().
 iv. How to group by.
 </pre>
+12. What are the files gets created when we create new project and new app?
+13. What is signals in django, explain few signal?
+14. Relationship in django models, explain foreign key, one to one fiels, many to many fields?
+15. What is template inheritance?
+16. Difference between extend and include in jinja template?
+17. Where does django stores session data, what are other session storage provided by django?
 
 <b>DRF</b>
 1. Difference between put and patch?
-
-
+2. What is serializer and deserializer?
+3. What is cors?
+4. Authentication in DRF?
+5. Authorization/Permission in DRF?
+6. What is JWT, What is access and refresh token?
+7. Routers in DRF?
+8. Difference in APIView & ViewSet?
+9. Difference in GenericAPIViewSet & GenericViewSet?
 
 # Interview Questions with answer:
 <b>Python</b>
@@ -1133,11 +1146,22 @@ A method has double underscore before and after, these are special methods in py
 Example, __str__(), __init__(), __repr__() etc
 </pre>
 
-2. What is __init__() method?
+2. What is `__init__()` method?
 <pre>
 It is the first method which is called in python, it constructor in python. 
 Use it when you want to pass some initial values in python.
 </pre>
+
+3. Difference betweeb `__init__()` method and `__init__.py` file?
+<pre>
+init method: In Python, the __init__ method is often referred to as the constructor method, and it's used to initialize
+ the attributes or properties of an object when an instance of a class is created. You can use it to set some initial 
+values for those attributes.
+	
+init file: In Django, the __init__.py file is a special file that indicates to Python that the directory 
+containing it should be considered a Python package or module.
+</pre>
+
 
 <b>Django Ansswers</b>
 1. Difference between method and class?
@@ -1190,6 +1214,65 @@ Django does not support multiple column primary key by default, to achieve this 
 <pre>
 Querysets are used for retrieving, updating, or deleting data from the database using Django's Object-Relational Mapping (ORM) system.
 In short queryset is used to work with database using ORM.
+</pre>
+
+12. What are the files gets created when we create new project and new app?
+<pre>
+project: init.py, settings.py, asgi.py, wsgi.py, urls.py
+app: views.py, models.py, init.py, tests.py, admin.py, apps.py
+
+`__init__.py`: In Django, the __init__.py file is a special file that indicates to Python that the directory 
+containing it should be considered a Python package or module.
+
+asgi.py:
+The asgi.py file in Django is used for running Django applications with ASGI (Asynchronous Server Gateway Interface) servers. 
+ASGI is a specification for asynchronous web servers and frameworks, which allows Django to handle asynchronous operations, 
+such as handling WebSocket connections, long polling, and other non-blocking tasks.
+
+See old directory for answer.
+</pre>
+
+16. Difference between extend and include in jinja template?
+<pre>
+<b>extend example:</b>
+
+base_template.html
+{% block title %}Default Title{% endblock %}
+
+child.html
+{% extends "base_template.html" %}
+{% block title %}Child Title{% endblock %}
+
+when you use {% extends %} to extend a base template, the entire content of the base template is 
+inherited into the child template, except for the content enclosed within the {% block %} tags in the child template.
+
+<b>include example</b>
+header.html
+footer.html
+
+index.html
+{% include "header.html" %}
+{% include "footer.html" %}
+
+The content of header and footer will be included in the index.html file, wherever we've given
+like if we give it inside body tag both will be visble inside body.
+</pre> 
+
+17. Where does django stores session data, what are other session storage provided by django?
+<pre>
+The default session engine is the "database-backed sessions" engine. 
+This means that by default, session data is stored in a database table called django_session. 
+
+Other session methods are:
+To include other session in django we need to give SESSION_ENGINE:
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+1. Database Storage: Session data is stored in a database table named django_session. This one is default. 
+2. Cached sessions: Use memcached or redis.
+3. File-Based Sessions: session data is stored as files on the server's file system. 
+4. Cookie-Based Sessions: stores session data directly in encrypted cookies sent to the client's browser.
+5. Cache Database Sessions: Session data is first stored in a cache, and it falls back to the database if the cache is unavailable. 
+This approach can be a good compromise between speed and persistence.
 </pre>
 
 <b>DRF</b>

@@ -684,6 +684,22 @@ iv. How to group by.
 15. What is template inheritance?
 16. Difference between extend and include in jinja template?
 17. Where does django stores session data, what are other session storage provided by django?
+18. What is Meta class in django?
+19. Difference between render vs render_to_response?
+20. How django manage many to many relationships?
+21. Django with multiple database, possible? In which case we need this option?
+22. What are Q objects in django? (Covered above)
+23. What are template tags? How to create a custom template tag?
+24. What is django middleware? (Covered above)
+25. What is the difference between syncdb and migrate command?
+26. What are request middleware and response middleware?
+27. What do you mean by direct_to_template view in django ?
+
+
+
+
+
+
 
 <b>DRF</b>
 1. Difference between put and patch?
@@ -807,6 +823,62 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 5. Cache Database Sessions: Session data is first stored in a cache, and it falls back to the database if the cache is unavailable. 
 This approach can be a good compromise between speed and persistence.
 </pre>
+
+18. What is Meta class in django? </br>
+Metaclass in Django as a mechanism to extend or customize the behavior of existing classes, particularly when defining Django models. By using the class Meta within a model, you can provide additional options and behavior that is specific to that class. The metaclass then processes these options and applies them to the model.
+
+19. Difference between render vs render_to_response?</br>
+Both are used to render HTML template, render is most common in modern django whereas render_to_response is old and it's removed since Django 2.0.
+
+20. How django manage many to many relationships?</br>
+1. For example, if you have two models, Author and Book, with a many-to-many relationship between them, Django might create a table named Author_Books or Book_Authors to store the relationships between authors and books.
+2. Foreign Keys: In the intermediary table, there are two foreign key fields that reference the primary keys of the two related models. These foreign keys establish the connections between the records in the intermediary table and the corresponding records in the two related tables.
+
+21. Django with multiple database, possible? In which case we need this option?
+1. Yes, You should provide a dictionary of database connections where each key represents a database alias, and the value is a dictionary containing the database settings like engine, name, user, password, host, port, etc.
+2. Case 1: We need to use different db for developement & production i.e different database for production and developement, so we can give condition if debug = False, use developement db.
+3. Case 2: We need seperate database for read and write, i.e one is read intensive and another one is write intensive task. To improve the database speed.
+<pre>
+Step 1: In settings.py give comma seperated dict of database.
+Step 2: create a router.py file:
+# routers.py
+class MyAppRouter:
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label == 'myapp':
+            return 'second_db'
+        return 'default'
+
+    def db_for_write(self, model, **hints):
+        if model._meta.app_label == 'myapp':
+            return 'second_db'
+        return 'default'
+</pre>
+
+23. What are template tags? How to create a custom template tag?
+Whatever in inside this  `{% tag %}` is template tag, eg: `{% for %}`, `{% if %}` etc.
+<pre>
+Creating custom template-tag for reverse of a string.
+
+step 1: create a new module # myapp/templatetags/my_tags.py
+from django import template
+
+register = template.Library()
+
+@register.filter
+def reverse_string(value):
+    return value[::-1]
+
+step 2: {% load my_tags %}
+step 3: {{ my_string|reverse_string }}
+</pre>
+
+25. What is the difference between syncdb and migrate command ?
+In modern versions of Django, syncdb is deprecated, and you should use migrate for all database schema management tasks.
+
+27. What do you mean by direct_to_template view in django ?
+It was used by old django to render template in class based view. New version use TemplateView to render HTML template.
+
+
 
 <b>DRF</b>
 

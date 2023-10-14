@@ -831,13 +831,13 @@ Metaclass in Django as a mechanism to extend or customize the behavior of existi
 Both are used to render HTML template, render is most common in modern django whereas render_to_response is old and it's removed since Django 2.0.
 
 20. How django manage many to many relationships?</br>
-1. For example, if you have two models, Author and Book, with a many-to-many relationship between them, Django might create a table named Author_Books or Book_Authors to store the relationships between authors and books.
-2. Foreign Keys: In the intermediary table, there are two foreign key fields that reference the primary keys of the two related models. These foreign keys establish the connections between the records in the intermediary table and the corresponding records in the two related tables.
+For example, if you have two models, Author and Book, with a many-to-many relationship between them, Django might create a table named Author_Books or Book_Authors to store the relationships between authors and books. </br>
+Foreign Keys: In the intermediary table, there are two foreign key fields that reference the primary keys of the two related models. These foreign keys establish the connections between the records in the intermediary table and the corresponding records in the two related tables.</br>
 
-21. Django with multiple database, possible? In which case we need this option?
-1. Yes, You should provide a dictionary of database connections where each key represents a database alias, and the value is a dictionary containing the database settings like engine, name, user, password, host, port, etc.
-2. Case 1: We need to use different db for developement & production i.e different database for production and developement, so we can give condition if debug = False, use developement db.
-3. Case 2: We need seperate database for read and write, i.e one is read intensive and another one is write intensive task. To improve the database speed.
+21. Django with multiple database, possible? In which case we need this option?</br>
+Yes, You should provide a dictionary of database connections where each key represents a database alias, and the value is a dictionary containing the database settings like engine, name, user, password, host, port, etc.</br>
+Case 1: We need to use different db for developement & production i.e different database for production and developement, so we can give condition if debug = False, use developement db.</br>
+Case 2: We need seperate database for read and write, i.e one is read intensive and another one is write intensive task. To improve the database speed.</br>
 <pre>
 Step 1: In settings.py give comma seperated dict of database.
 Step 2: create a router.py file:
@@ -872,10 +872,10 @@ step 2: {% load my_tags %}
 step 3: {{ my_string|reverse_string }}
 </pre>
 
-25. What is the difference between syncdb and migrate command ?
+25. What is the difference between syncdb and migrate command ?</br>
 In modern versions of Django, syncdb is deprecated, and you should use migrate for all database schema management tasks.
 
-27. What do you mean by direct_to_template view in django ?
+27. What do you mean by direct_to_template view in django ?</br>
 It was used by old django to render template in class based view. New version use TemplateView to render HTML template.
 
 

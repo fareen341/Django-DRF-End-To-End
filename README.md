@@ -682,7 +682,7 @@ iv. How to group by.
 13. What is signals in django, explain few signal?
 14. Relationship in django models, explain foreign key, one to one fiels, many to many fields?
 15. What is template inheritance?
-16. Difference between extend and include in jinja template?
+16. Difference between extend and include in jinja template? And What do you mean by template inheritence in django ?
 17. Where does django stores session data, what are other session storage provided by django?
 18. What is Meta class in django?
 19. Difference between render vs render_to_response?
@@ -781,7 +781,7 @@ such as handling WebSocket connections, long polling, and other non-blocking tas
 See old directory for answer.
 </pre>
 
-16. Difference between extend and include in jinja template?
+16. Difference between extend and include in jinja template? And What do you mean by template inheritence in django ?
 <pre>
 <b>extend example:</b>
 

@@ -661,184 +661,54 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin (for development
 </pre>
 
 <b>Django</b>
-1. Difference between Abstract base class inheritance, Multi-table inheritance, Proxy Model?
-2. Difference between django-admin and manage.py?
-3. What are the common excptions in django?
-4. Authentication & Authorization in Django?
-5. Django Security?
-6. Django Middleware?
-7. Generic view in django?
-8. Does django support multiple primary key, if not how to achive this?
-9. Queryset in django?
-10. Request response lifecycle?
-11. ORM:
+1. Meta class in django?
 <pre>
-i. Difference between select_related & prefetch related.
-ii. Use of Q().
-iii. Use of F().
-iv. How to group by.
-</pre>
-12. What are the files gets created when we create new project and new app?
-13. What is signals in django, explain few signal?
-14. Relationship in django models, explain foreign key, one to one fiels, many to many fields?
-15. What is template inheritance?
-16. Difference between extend and include in jinja template? And What do you mean by template inheritence in django ?
-17. Where does django stores session data, what are other session storage provided by django?
-18. What is Meta class in django?
-19. Difference between render vs render_to_response?
-20. How django manage many to many relationships?
-21. Django with multiple database, possible? In which case we need this option?
-22. What are Q objects in django? (Covered above)
-23. What are template tags? How to create a custom template tag?
-24. What is django middleware? (Covered above)
-25. What is the difference between syncdb and migrate command?
-26. What are request middleware and response middleware?
-27. What do you mean by direct_to_template view in django ?
+1. Meta class provides the meta data about the class.
+2. So meta data meaning is data about data, so here meta data is data about class.
+3. Example: in models.py
 
-
-
-
-
-
-
-<b>DRF</b>
-1. Difference between put and patch?
-2. What is serializer and deserializer?
-3. What is cors?
-4. Authentication in DRF?
-5. Authorization/Permission in DRF?
-6. What is JWT, What is access and refresh token?
-7. Routers in DRF?
-8. Difference in APIView & ViewSet?
-9. Difference in GenericAPIViewSet & GenericViewSet?
-
-<b>Django Ansswers</b>
-1. Difference between method and class?
-<pre>
-If it is inside the class then it is called as method and if it is outside of class the called as function.
-</pre>
-2. Difference between django-admin and manage.py?
-<pre>
-Both are command-line utility provided by django. django-admin is used for administrative tasks.
-</pre>
-3. What are the common exceptions in django?
-<pre>
-ObjectDoesNotExist, PermissionDenied, IntegrityError etc
-</pre>
-4. Authentication & Authorization in Django?
-<pre>
-Django provides build-in Authentication, along with Authentication it also provide authorization like users, groups & permissions etc
-</pre>
-5. Django Security?
-<pre>
-Django automatically provides some coommon security issues like:
-i. SQL injection attack cuz we use ORM.
-
-ii. CSRF attack:  CSRF protection ensures that actions initiated by a user, such as submitting a form or making a request, 
-are only accepted if they come from a trusted source, and not from a malicious website or attacker-controlled source. 
-
-iii. Pswd hashing
-
-iv. Authentication & Authorization
-
-v. XSS protection: XSS attacks occur when an attacker injects malicious scripts (usually JavaScript) into web pages viewed 
-by other users. These scripts can then execute within the context of the victim's browser, potentially stealing user data, 
-hijacking sessions, or performing other malicious actions.
-
-Along with these security, we should make our web server secure also, cuz request first hit web server so we can avoid DDOS 
-at web server level and continue.
+class Meta:
+    verbose_name = "Redable table name"
 </pre>
 
-6. Middleware in django?
+2. render vs render_to_response?
 <pre>
-Django provide some middleware like session, message & csrf middleware, along with that we can have custom middleware also.
-</pre>
-
-8. Does django support multiple primary key?
-<pre>
-Django does not support multiple column primary key by default, to achieve this we can use unique_together instead
-</pre>
-
-9. Queryset in django?
-<pre>
-Querysets are used for retrieving, updating, or deleting data from the database using Django's Object-Relational Mapping (ORM) system.
-In short queryset is used to work with database using ORM.
-</pre>
-
-12. What are the files gets created when we create new project and new app?
-<pre>
-project: init.py, settings.py, asgi.py, wsgi.py, urls.py
-app: views.py, models.py, init.py, tests.py, admin.py, apps.py
-
-`__init__.py`: In Django, the __init__.py file is a special file that indicates to Python that the directory 
-containing it should be considered a Python package or module.
-
-asgi.py:
-The asgi.py file in Django is used for running Django applications with ASGI (Asynchronous Server Gateway Interface) servers. 
-ASGI is a specification for asynchronous web servers and frameworks, which allows Django to handle asynchronous operations, 
-such as handling WebSocket connections, long polling, and other non-blocking tasks.
-
-See old directory for answer.
-</pre>
-
-16. Difference between extend and include in jinja template? And What do you mean by template inheritence in django ?
-<pre>
-<b>extend example:</b>
-
-base_template.html
-{% block title %}Default Title{% endblock %}
-
-child.html
-{% extends "base_template.html" %}
-{% block title %}Child Title{% endblock %}
-
-when you use {% extends %} to extend a base template, the entire content of the base template is 
-inherited into the child template, except for the content enclosed within the {% block %} tags in the child template.
-
-<b>include example</b>
-header.html
-footer.html
-
-index.html
-{% include "header.html" %}
-{% include "footer.html" %}
-
-The content of header and footer will be included in the index.html file, wherever we've given
-like if we give it inside body tag both will be visble inside body.
-</pre> 
-
-17. Where does django stores session data, what are other session storage provided by django?
-<pre>
-The default session engine is the "database-backed sessions" engine. 
-This means that by default, session data is stored in a database table called django_session. 
-
-Other session methods are:
-To include other session in django we need to give SESSION_ENGINE:
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-
-1. Database Storage: Session data is stored in a database table named django_session. This one is default. 
-2. Cached sessions: Use memcached or redis.
-3. File-Based Sessions: session data is stored as files on the server's file system. 
-4. Cookie-Based Sessions: stores session data directly in encrypted cookies sent to the client's browser.
-5. Cache Database Sessions: Session data is first stored in a cache, and it falls back to the database if the cache is unavailable. 
-This approach can be a good compromise between speed and persistence.
-</pre>
-
-18. What is Meta class in django? </br>
-Metaclass in Django as a mechanism to extend or customize the behavior of existing classes, particularly when defining Django models. By using the class Meta within a model, you can provide additional options and behavior that is specific to that class. The metaclass then processes these options and applies them to the model.
-
-19. Difference between render vs render_to_response?</br>
 Both are used to render HTML template, render is most common in modern django whereas render_to_response is old and it's removed since Django 2.0.
+</pre>
 
-20. How django manage many to many relationships?</br>
-For example, if you have two models, Author and Book, with a many-to-many relationship between them, Django might create a table named Author_Books or Book_Authors to store the relationships between authors and books. </br>
-Foreign Keys: In the intermediary table, there are two foreign key fields that reference the primary keys of the two related models. These foreign keys establish the connections between the records in the intermediary table and the corresponding records in the two related tables.</br>
-
-21. Django with multiple database, possible? In which case we need this option?</br>
-Yes, You should provide a dictionary of database connections where each key represents a database alias, and the value is a dictionary containing the database settings like engine, name, user, password, host, port, etc.</br>
-Case 1: We need to use different db for developement & production i.e different database for production and developement, so we can give condition if debug = False, use developement db.</br>
-Case 2: We need seperate database for read and write, i.e one is read intensive and another one is write intensive task. To improve the database speed.</br>
+3. How django manage many to many relationships ?
+It creates a new table of name with underscore of both table, eg for song and user table it'll create a new table with name song_user of user_song, this table store the primary key of both table, song_id and user_id.
 <pre>
+Step: create two models student and models
+class Course(models.Model):
+    name = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.name
+
+class Student(models.Model):
+    name = models.CharField(max_length=300)
+    course = models.ManyToManyField(Course)
+
+    def course_student(self):
+        return ','.join([str(p) for p in self.course.all()])
+
+
+Step 2: If we need to fetch using shell we'll get the object first
+st_obj = Student.objects.get(id=1)
+st_obj.course.all()
+</pre>
+
+4. Django with multiple database, possible? if yes in which case we need it?
+<pre>
+Yes, You should provide a dictionary of database connections where each key represents a database alias, and the value is a
+dictionary containing the database settings like engine, name, user, password, host, port, etc.
+
+Case 1: We need to use different db for developement & production i.e different database for production and developement,
+so we can give condition if debug = False, use developement db.
+Case 2: We need seperate database for read and write, i.e one is read intensive and another one is write intensive task.
+To improve the database speed.
+
 Step 1: In settings.py give comma seperated dict of database.
 Step 2: create a router.py file:
 # routers.py
@@ -854,10 +724,290 @@ class MyAppRouter:
         return 'default'
 </pre>
 
-23. What are template tags? How to create a custom template tag?
-Whatever in inside this  `{% tag %}` is template tag, eg: `{% for %}`, `{% if %}` etc.
+
+5. What are Q objects in django?
+
+6. What is the difference between syncdb and migrate command ?
 <pre>
-Creating custom template-tag for reverse of a string.
+In modern versions of Django, syncdb is deprecated, and you should use migrate for all database schema management tasks.
+</pre>
+
+7. What are request middleware and response middleware?
+<pre>
+Explain the life cycle.
+</pre>
+
+8. What do you mean by direct_to_template view in django ?
+<pre>
+It was used by old django to render template in class based view. New version use TemplateView to render HTML template.
+</pre>
+
+9. What are modular class based generic views?
+<pre>
+Modular class-based generic views, often referred to as "modular CBVs" or "class-based views,"
+are a powerful feature in Django that provides a reusable and organized way to handle common web patterns.
+
+EXample:
+
+from django.views.generic import ListView
+from .models import MyModel
+
+class MyModelListView(ListView):
+    model = MyModel
+    template_name = 'myapp/mymodel_list.html'
+    context_object_name = 'mymodels'
+
+</pre>
+
+10. Why is the CSRF token used in Django?
+<pre>
+In Django, you use {% csrf_token %} template tag to include a CSRF token in your HTML forms.
+The purpose of this token is to ensure that the request is coming from a genuine user and not from an
+attacker attempting a CSRF (Cross-Site Request Forgery) attack.
+
+We use: {% csrf_token %}
+</pre>
+
+11. What does the collectstatic command do ?
+<pre>
+It traverses through all installed apps, including your project's STATICFILES_DIRS and static directories within app folders,
+and copies their static files into a designated directory, usually defined by the STATIC_ROOT setting in your project's settings.
+</pre>
+
+12. How to change default timezone in django ?
+<pre>
+in settings.py
+TIME_ZONE = 'America/New_York'
+
+python manage.py migrate
+</pre>
+
+
+14. Why to use template inheritence ?
+<pre>
+
+</pre>
+
+15. Does django have a loosely coupled architecture ? Explain the same.
+<pre>
+Django has a loosely coupled architecture. It's designed with modularity and flexibility in mind, allowing its components to be used independently,
+and it encourages the creation of reusable, self-contained apps. Django's middleware and pluggable nature enable customization, and it offers a
+wide choice of components like databases and templates. This loose coupling makes it adaptable and promotes clean, maintainable code.
+
+
+In software design, "loosely coupled" refers to a system's components or modules that are designed to interact with each other with minimal dependencies.
+</pre>
+
+16. What is the purpose of wsgi.py file in django project ?
+<pre>
+wsgi acts as a interface between django application and our python project.
+We need to tell gunicorn to use wsgi in order to server the django application rather than python’s built in http server.
+$ gunicorn — bind 0.0.0.0:8000 <your-project>.wsgi:application
+</pre>
+
+17. What is the difference between absolute path and relative path ?
+<pre>
+absolute paths provide a complete reference from the root directory,
+while relative paths reference files or directories relative to the current working directory.
+</pre>
+
+18. What is list view in django ?
+<pre>
+
+</pre>
+
+19. What is template view in django ?
+<pre>
+In class based view we use template view to render html page.
+Example:
+
+from django.views.generic import TemplateView
+
+class MyTemplateView(TemplateView):
+    template_name = 'my_template.html'
+</pre>
+
+20. What do you mean by pagination of resultset ?
+<pre>
+Django, as a web framework, provides built-in support for implementing pagination, making it easier for
+developers to manage large result sets and create user-friendly interfaces.
+Pagination is often used in Django views to display data to users in a structured and manageable way.
+</pre>
+
+21. How to access a django settings variable ?
+<pre>
+from django.conf import settings
+
+debug_mode = settings.DEBUG
+database_config = settings.DATABASES
+</pre>
+
+22. Why do we have a "__init__.py" file in a django app ?
+<pre>
+The __init__.py file in the app directory is used to indicate that the directory should be recognized as a Python package.
+Without the __init__.py file, Python wouldn't recognize the directory as a package, and you wouldn't be able to import its contents.
+</pre>
+
+23. What is the Architecture is following Django?
+<pre>
+MVT
+</pre>
+
+24. Have you heard about Middlewares? what is it? how it’s Important in Django? How to write custom middleware in Django? give one sample( you can use IP filtering for the example)
+<pre>
+1. In your app:
+# ip_filter_middleware.py
+class IPFilterMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # Add your IP address filtering logic here
+        allowed_ips = ['127.0.0.1', '192.168.1.1']
+        client_ip = request.META.get('REMOTE_ADDR')
+
+        if client_ip not in allowed_ips:
+            return HttpResponseForbidden("Access denied")
+
+        response = self.get_response(request)
+        return response
+
+2. In your Django project's settings, add the fully-qualified path to your middleware class to the MIDDLEWARE setting.
+Make sure it's placed before other middlewares that you want to apply after it.
+# settings.py
+MIDDLEWARE = [
+    # ...
+    'yourapp.middleware.IPFilterMiddleware',  # Add the path to your middleware class here
+    # ...
+]
+</pre>
+
+25. Explain the alredy provided django middleware, and how it works in request and response time?
+<pre>
+1. Django provodes the following default middleware.
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+2. The middleware will run in the order and it is important, so that first SecurityMiddleware should run before SessionMiddleware and so on.
+3. At time of request the first middleware which hit is SecurityMiddleware and last in XFrameOptionsMiddleware in the given order.
+4. At time of response the middleware follow the reverse order.
+so first middleware which hit is XFrameOptionsMiddleware and last in XFrameOptionsMiddleware in the given order.
+5. Django checks the middleware at the time of request and response too.
+6. So the above custom middleware which is ip filtering, should be given after security middleware.
+</pre>
+
+25. What is the new version of Django? what all the differences? (don’t forget to say about the latest version support only python 3. x version.
+<pre>
+Latest django support python 3.x only.
+</pre>
+
+26. What is Backend in Django? Can we write own backend? when?
+1. In Django, a "backend" typically refers to the authentication backend, which is a part of Django's authentication system. Authentication backends in Django are responsible for verifying the user's credentials (username and password), as well as providing the user's information after successful authentication.</br>
+2. Django provides a default authentication backend that works for most cases, and it's usually sufficient for typical web applications. This backend uses the username and password fields in the Django user model for authentication.</br>
+3. However, you can write your custom authentication backend when you have specific authentication requirements that go beyond the default behavior. Common scenarios where you might want to write your own authentication backend include:</br>
+4. Integrating with an external authentication system, like LDAP, OAuth, or a single sign-on (SSO) service.</br>
+
+
+28. What is Decorator? How to write custom decorator in Django ? Give one sample
+<pre>
+Simple decorator example:   below example UnauthorizerException is optional
+
+class UnauthorizerException(Exception):
+    def __init__(self, message = "You are not authorize to view."):
+        self.message = message
+        super().__init__(self.message)
+
+def superuser_permission(render_func):
+    def wrapper(request, *args, **kwargs):
+        if request == "auth_user":          # in django replace request.user.is_superuser()
+            return render_func(request, *args, **kwargs)
+        else:
+            raise UnauthorizerException # Return an PermissionError response indicating unauthorized access.
+    return wrapper
+
+
+@superuser_permission
+def render_func(request):
+    # If auth user can view all users
+    # users = User.objects.all()
+    return f'<h1>This is a protected view</h1>{request}'
+
+# Simulate a request (you should use Django's test client or an actual request object).
+request = "auth_user"  # Simulate an authorized request.
+res = render_func(request)
+print(res)
+</pre>
+
+29. How is the session Handling In Django? What are other session storage provided by django?
+<pre>
+The default session engine is the "database-backed sessions" engine.
+This means that by default, session data is stored in a database table called django_session.
+
+Other session methods are:
+To include other session in django we need to give SESSION_ENGINE:
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+1. Database Storage: Session data is stored in a database table named django_session. This one is default.
+2. Cached sessions: Use memcached or redis.
+3. File-Based Sessions: session data is stored as files on the server's file system.
+4. Cookie-Based Sessions: stores session data directly in encrypted cookies sent to the client's browser.
+5. Cache Database Sessions: Session data is first stored in a cache, and it falls back to the database if the cache is unavailable.
+This approach can be a good compromise between speed and persistence.
+</pre>
+
+30. What is the Usage of ALLOWED_HOST in Django project settings?
+<pre>
+The hosts which are allowed, if we have frontend host port, we need to give here.
+If we give ALLOWED_HOST = "*" everyone is allowed, dont use in production.
+</pre>
+
+31. How are the static(CSS, JS, Images)files rendering in Django?
+<pre>
+Step1 : give the static path, join with base dir. STATIC_DIR=os.path.join(BASE_DIR,'static')
+Step2: {% load static %}
+</pre>
+
+32. Difference between extend and include in jinja template? And What do you mean by template inheritence in django ?
+32. What is Template(HTML) Inheritance (inherit base.html to index.html using extends)?
+<pre>
+Join the template dir
+'DIRS': os.path.join(BASE_DIR,'templates')
+
+extend example:
+
+base_template.html
+{% block title %}Default Title{% endblock %}
+
+child.html
+{% extends "base_template.html" %}
+{% block title %}Child Title{% endblock %}
+
+when you use {% extends %} to extend a base template, the entire content of the base template is
+inherited into the child template, except for the content enclosed within the {% block %} tags in the child template.
+
+include example
+header.html
+footer.html
+
+index.html
+{% include "header.html" %}
+{% include "footer.html" %}
+
+The content of header and footer will be included in the index.html file, wherever we've given
+like if we give it inside body tag both will be visble inside body.
+</pre>
+
+33. What is Template Tags? What is the use? How to write custom tags?
+<pre>
+1. Whatever in inside this {% tag %} is template tag, eg: {% for %}, {% if %} etc.
+2. Creating custom template-tag for reverse of a string.
 
 step 1: create a new module # myapp/templatetags/my_tags.py
 from django import template
@@ -872,15 +1022,666 @@ step 2: {% load my_tags %}
 step 3: {{ my_string|reverse_string }}
 </pre>
 
-25. What is the difference between syncdb and migrate command ?</br>
-In modern versions of Django, syncdb is deprecated, and you should use migrate for all database schema management tasks.
+34. What is Queryset? what is the instance? (all, filter and get)? Difference between filter and get in queryset?
+<pre>
+Queryset: to query the data, it's same like database query. Protect from sql injection attack etc.
+get(): used to fetch single record, if it found more than one record than it'll raise exceptions.
+filter(): use when filtering multiple records. will return multiple records.
+</pre>
 
-27. What do you mean by direct_to_template view in django ?</br>
-It was used by old django to render template in class based view. New version use TemplateView to render HTML template.
+35. Do you know about model Manager in Django? Can we write custom manager? How and why?
+<pre>
+1. In Django, a manager is an interface through which database query operations are provided to a Django model.
+Managers are used to encapsulate the logic for interacting with the database and performing queries on the model.
+2. DRY (Don't Repeat Yourself) principles: By reusing common query logic across your application, you reduce duplication in your code.
+3. Example:
+
+from django.db import models
+
+class CustomManager(models.Manager):
+    def published_books(self):
+        return self.filter(published=True)
+
+    def books_in_offer(self):
+        return self.filter(in_offer=True)
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    published = models.BooleanField(default=False)
+
+    # Attach the custom manager to the model
+    custom_objects = CustomManager()
 
 
+4. Accessing the manager object:
+published_books = Book.custom_objects.published_books()
+books_in_offer = Book.custom_objects.books_in_offer()
+5. Django already have one manager which is objects, eg: Student.objects.filter().
+<b>
+Note: When we use custom manager `objects` will no loner be available, we have to use custom_objects instead of objects:
+Eg: Student.custom_objects.all()
+</b>
+</pre>
+
+36. Have you heard about model permissions? why it's using?
+<pre>
+class MyModel(models.Model):
+    name = models.CharField(max_length=100)
+    objects = MyModelManager()
+
+    class Meta:
+        permissions = [
+            ("can_view_mymodel", "Can view MyModel"),
+            ("can_change_mymodel", "Can change MyModel"),
+            ("can_delete_mymodel", "Can delete MyModel"),
+        ]
+</pre>
+
+37. Consider you have got a project, How will you create models?
+<pre>
+
+</pre>
+
+38. What is __init__ method do in models?
+<pre>
+
+</pre>
+
+39. What is Inheritance in Models ? Give one sample? </br>
+39. Difference between Abstract base class inheritance, Multi-table inheritance, Proxy Model?
+<pre>
+1. Abstract Base Class
+2. Proxy Model
+3. Multi-Table Inheritance
+
+SEE ABOVE
+</pre>
+
+40. What’s the difference between Django OneToOneField and ForeignKey?
+<pre>
+OneToOneField example:
+class Student(models.Model):
+    name = models.CharField(max_length=300)
+
+class Aadhar(models.Model):
+    aadhar_num = models.IntegerField()
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+</pre>
+
+41. What’s the difference between OneToMany, ForeignKey and ManyToMany field?
+<pre>
+OneToMany: one parent can have only one child.
+ForeignKey: one parent can have many child.
+ManyToMany: one parent can have many childs, many childs can have many parents.
+</pre>
+
+42. How to insert a data into the M2M field in the models(field.add.()), also update and delete.
+<pre>
+# ADDING
+class Student(models.Model):
+    name = models.CharField(max_length=300)
+    course = models.ManyToManyField(Course)
+
+In above models, to insert data in course model, we need to first insert data in student object and save
+$ st = Student(pk=1)
+$ st.save()
+$ st.course.add(Course.objects.get(id=1), Course.objects.get(id=2))     # we cannot give filter here cuz it expect an pk.
+
+
+# UPDATING
+$ st = Student.objects.get(pk=1)
+$ new_course = [Course.objects.get(id=2)]
+$ st.course.set(new_course)
+
+
+# DELETING
+We can use `remove`, `clear`
+
+remove: to remove few objects
+$ st = Student.objects.get(pk=1)
+$ remove_course = [Course.objects.get(id=1), Course.objects.get(id=2)]
+$ st.course.remove(remove_course)
+
+
+clear: to remove entire course
+$ st = Student.objects.get(pk=1)
+$ st.course.clear()
+</pre>
+
+44. How to do CRUD operations in Queryset?
+<pre>
+# Adding
+$ Student(name="Fareen", age="26").save()
+
+# Update
+Using filter:
+$ Student.objects.filter(pk=1).update(name="Python_update")
+
+Using get:
+obj = Student.objects.get(pk=1)
+obj.name = "new name"
+obj.save()
+
+# Delete
+$ Student(name="Fareen", age="26").delete()
+</pre>
+
+46. CRUD in OneToOneField?
+<pre>
+This is same as adding the object liek above, difference is we just need to give queryset instead of object, at place where it has foreign key
+
+# ADDING
+$ Aadhar(aadhar_num=123, student_name=Student.custom_objects.get(pk=3)).save()
+
+In above instead of providing name, we give student_name queryset. Rest all is same like above
+</pre>
+
+47. CRUD in ForeignKey?
+<pre>
+Same as above, just give foreign key queryset instead of name:
+
+Adding:
+Book(title="Python with django", author=Author.objects.get(pk=2), version="1.1").save()
+</pre>
+
+43. Difference between User, AbstractUser and AbstractBaseUser models in Django?
+<pre>
+<b>User</b>
+Adding user have one function, which is create_user:
+
+from django.contrib.auth.models import User
+new_user = User.objects.create_user(username='john_doe', password='password123', email='john@example.com')
+
+
+<b>Extending the Built-In User Model:</b>
+from django.contrib.auth.models import User
+
+class CustomUserModel(User):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.IntegerField()
+
+Note: above will create an entirely new model `CustomUserModel` where we have to give foreign key of user
+
+
+Use below option to entirely create custom model for user
+<b>AbstractUser</b>
+Subclassing AbstractUser to add custom fields and methods to the default user model.
+
+Example:
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    age = models.IntegerField()
+
+
+<b>AbstractBaseUser</b>
+Creating a completely custom user model using AbstractBaseUser to define your own authentication system.
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, username, email, password=None):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+class CustomUser(AbstractBaseUser):
+    username = models.CharField(unique=True, max_length=30)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    # Add your custom fields
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    def __str__(self):
+        return self.email
+</pre>
+
+44. How to inherit User model in django?
+<pre>
+See above 1st option
+</pre>
+
+45. What is the difference between Function based and Class-based views?
+<pre>
+Simple views can be efficiently implemented with FBVs, while more complex views, especially those that follow
+common patterns like CRUD operations, can benefit from the structure and reusability that CBVs provide.
+ In many cases, Django's Class-Based Views can lead to more maintainable and DRY (Don't Repeat Yourself) code.
+</pre>
+
+46. What is serialization & deserialization?
+<pre>
+See above
+</pre>
+
+47. What’s the difference between select_related and prefetch_related in Django ORM?
+<pre>
+See above
+</pre>
+
+48. What all basic request methods? Difference between POST & PUT
+<pre>
+GET: Typically used to retrieve a list of records or a single record.
+POST: Used for creating new data records.
+PUT: Used to replace the complete data of a resource.
+PATCH: Used to partially update a resource, typically specific fields.
+DELETE: Used to remove data records.
+</pre>
+
+49. Difference between Django’s annotate and aggregate methods?
+<pre>
+Annotate is used for `group_by` and aggregate is used for `aggregrate methods` like sum, min, max, count etc
+
+Example:
+`Annotate`:
+obj = Book.objects.values('author__name').annotate(count=Count('author'))
+print(obj.query)
+
+`SELECT "BlogApp_author"."name", COUNT("BlogApp_book"."author_id") AS "count"
+FROM "BlogApp_book"
+INNER JOIN "BlogApp_author"
+ON ("BlogApp_book"."author_id" = "BlogApp_author"."id")
+GROUP BY "BlogApp_author"."name"`
+
+whether we give in values will become group by:
+obj=Book.objects.values('author', 'version').annotate(count=Count('author'))
+print(obj.query)
+
+`SELECT "BlogApp_book"."author_id", "BlogApp_book"."version", COUNT("BlogApp_book"."author_id") AS "count"
+FROM "BlogApp_book"
+GROUP BY "BlogApp_book"."author_id", "BlogApp_book"."version"`
+
+
+Example:
+`Aggregrate`:
+
+from django.db.models import Min, Max, Count, Sum
+obj = Price.objects.aggregate(price_min = Min('price'))
+</pre>
+
+50. How to filter multiple fields in a filter?
+<pre>
+Using Q objects.
+Example: see above
+</pre>
+
+51. How the Ajax request is working Django ? is it secured?
+<pre>
+You can make it secure, using many practices one of them is including csrf token.
+</pre>
+
+52. What is CSRF? How it’s preventing in Django?
+<pre>
+See above
+</pre>
+
+53. What Are messages in Django? How it’s helping Django application development
+<pre>
+
+</pre>
+
+54. What are signals in Django? what all the methods available?
+<pre>
+Signals are used to add extra functionality when an object is saved before of after
+
+Example of pre and post save: To create a signal:
+1. In apps.py add ready function:
+
+from django.apps import AppConfig
+
+class BlogappConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'BlogApp'
+
+    def ready(self):
+        import BlogApp.signals
+
+2. Create signals.py in the app:
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from .models import Book
+
+@receiver(post_save, sender=Book)
+def book_after_save(sender, instance, **kwargs):
+    if not instance.pk:
+        print("CREATED")
+        instance.version = instance.version * 2
+    else:
+        print("UPDATED")
+        instance.version = instance.version * 2
+
+    # Disconnect the signal temporarily to avoid recursion
+    post_save.disconnect(book_after_save, sender=Book)
+    instance.save()
+    # Reconnect the signal
+    post_save.connect(book_after_save, sender=Book)
+
+Same code of pre_save() just replace everywhere with pre_save
+
+</pre>
+
+55. What is the Django Admin interface? How to override its admin panel. What is Jazzmine?
+<pre>
+
+</pre>
+
+56. What is the context in Django?
+<pre>
+In django we pass context from views to templatea as a dict.
+</pre>
+
+57. What's the use of a session framework?
+<pre>
+In Django, a web framework for Python, the session framework is built-in and provides a convenient way to use sessions in your web applications.
+You can store and retrieve data in sessions using the request.session dictionary in views. This is particularly useful for tasks like
+user authentication and maintaining a user's shopping cart throughout their visit to an e-commerce site.
+</pre>
+
+58. What is difference in makemigrations and migrate, what are the default tables are created when we run migrate?
+<pre>
+what are the default tables are created when we run migrate?
+Session, Auth, Contenttype, Logentry, Migration table are get created
+</pre>
+
+59. What are Django.shortcuts.render functions?
+<pre>
+
+In Django, render is a function provided by the django.shortcuts module. It is commonly used in view
+functions to simplify the process of rendering an HTML template and returning an HttpResponse object.
+The render function takes care of loading a template, rendering it with a given context
+(a dictionary containing data to be displayed in the template), and returning an HttpResponse object.
+
+from django.shortcuts import render
+
+def myview(request):
+    return render("template.html", context={})
+</pre>
+
+60. What does a URLs-config file contain?
+<pre>
+For class based view:
+path("home/", view.home, name="home")
+
+The name parameter provides a way to reference these URLs in templates and views using the {% url %} template tag and the reverse() function.
+
+For class based view:
+path("home/", HomeView.as_view(), name="home")
+</pre>
+
+61. Does Django support multiple-column primary keys? If not what we can use to have that functionality?
+<pre>
+No, django does not support multiple-column primary keys, instead we use unique_together for this requirement.
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+    class Meta:
+        unique_together = ('first_name', 'last_name')
+</pre>
+
+62. How can you see raw SQL queries running in Django?
+<pre>
+Using query
+
+$ b = Book.objects.all()
+$ print(b.query)
+</pre>
+
+63. List several caching strategies supported by Django.
+<pre>
+Django support both database & cache like redis and memcached caching strategies.
+</pre>
+
+64. What do you use django.test.Client class for?
+<pre>
+
+</pre>
+
+65. What is mixin?
+<pre>
+
+</pre>
+
+66. What is Django Field Class?
+<pre>
+CharField, DecimalField, TextField, DateField, and BooleanField are all field class.
+</pre>
+
+67. Why is permanent redirection not a good option?
+<pre>
+
+</pre>
+
+68. How to combine multiple QuerySets in a View? Example: using chain.Mention the ways used for the customization of the functionality of the Django admin interface.
+<pre>
+To combine multiple QuerySets in a Django view, you can use the chain function.
+Example:
+
+q1 = ook.objects.all()
+q2 = Author.objects.all()
+q3 = list(chain(q1, q2))
+
+O/p:
+`[<Book: Cloud & devops>, <Book: s3>, <Book: ecs>, <Book: data analyst>, <Book: data science>,
+<Book: rds>, <Book: Python with django>, <Book: gitt>, <Book: JAVA>,
+<Author: Fareen>, <Author: Anamika>]`
+</pre>
+
+69. Explain Q objects in Django ORM.
+<pre>
+
+</pre>
+
+70. What are Django exceptions?
+<pre>
+Example: ObjectDoesNotExist, IntegrityError, Http404 etc.
+Raising a custom exception is same as python,
+We can also create custom exception and raise, also we can handle the raised exception.
+
+
+def custom_exception_handler(request):
+    try:
+        # Code that might raise the custom exception
+        if some_condition:
+            raise MyCustomException("This is a custom exception message.")
+    except MyCustomException as e:
+        # Handle the custom exception
+        return HttpResponse(f"Custom Exception: {e}", status=400)
+
+Now whenever MyCustomException is raise it'll get handled and return HttpResponse with status code 400
+</pre>
+
+71. Describe the inheritance styles in Django?
+<pre>
+Give example of model class inheritence.
+</pre>
+
+72. Give a brief about the settings.py file.
+<pre>
+We can give global settings here, it has allowed hosts, middleware, timezone info, static,
+template path info, broker info if we use celery.
+</pre>
+
+73. What is the difference between CharField and TextField in Django?
+<pre>
+A CharField is used to store a relatively short, fixed-length string.
+A TextField is used for storing longer, unstructured text data.
+</pre>
+
+74. Describe Django Field Class types?
+<pre>
+See above
+</pre>
+
+75. What is the usage of "django-admin" and "manage.py"?
+<pre>
+Both are command-line utility provided by django.
+In django, django-admin is used for administrative related tasks like creating project.
+manage.py is a command-line tool for various management tasks in Django.
+</pre>
+
+76. What are Django cookies?
+<pre>
+
+</pre>
+
+77. Give a brief about Django Template?
+<pre>
+
+</pre>
+
+78. When to use iterators in Django ORM?
+<pre>
+1. The data in lazy load in, This lazy loading behavior is an important aspect of Django's ORM, allowing you to work with large datasets without consuming excessive memory.
+2. When we do
+queryset = MyModel.objects.all()  # No data is fetched yet,
+
+for item in queryset:
+    # Data is fetched from the database in batches as you iterate
+    # this is lazy loading.
+
+specific_item = queryset.get(pk=1)  # Data is fetched for the specific item with primary key 1
+
+3. It only loads data when we use for loop or we do  .get(), .filter(), .count(), and so on.
+
+<b>When to use iterator?</b>
+When we do
+queryset = MyModel.objects.all()  # No data is fetched yet,
+
+for item in queryset:
+    # entire data will load into the memory
+
+Instead of loading the big large data into memory itself use iterator.
+Iterator breaks the data into chunks, it fetches a small number of rows at a time
+(controlled by the chunk_size option, which defaults to 200) from the database and yields them one at a time.
+
+for item in queryset.iterator():
+    # will load chunk_size data
+</pre>
+
+79. How does Django process a request?
+<pre>
+Explain request, response.
+</pre>
+
+80. Is Django too monolithic? Explain this statement.
+<pre>
+
+</pre>
+
+81. What is the use of forms in Django?
+<pre>
+
+</pre>
+
+82. Can you explain how to add View functions to the urls.py file?
+<pre>
+see above
+</pre>
+
+83. Explain Django Security.?
+<pre>
+Django automatically provides some coommon security issues like:
+i. SQL injection attack cuz we use ORM.
+
+ii. CSRF attack:  CSRF protection ensures that actions initiated by a user, such as submitting a form or making a request,
+are only accepted if they come from a trusted source, and not from a malicious website or attacker-controlled source.
+
+iii. Pswd hashing
+
+iv. Authentication & Authorization
+
+v. XSS protection: XSS attacks occur when an attacker injects malicious scripts (usually JavaScript) into web pages viewed
+by other users. These scripts can then execute within the context of the victim's browser, potentially stealing user data,
+hijacking sessions, or performing other malicious actions.
+
+Along with these security, we should make our web server secure also, cuz request first hit web server so we can avoid DDOS
+at web server level and continue.
+</pre>
+
+84. What are Django generic views?
+<pre>
+
+</pre>
+
+85. What is the correct way to make a variable available to all your templates?
+<pre>
+
+</pre>
+
+86. What is a QuerySet?
+<pre>
+See above
+</pre>
+
+87. Are Django signals asynchronous?
+<pre>
+Django signals themselves are synchronous and execute in the same thread as the emitting code.
+</pre>
+
+88. Explain different status codes?
+<pre>
+200 (OK): The request was successful.
+201 (Created)
+
+400 (Bad Request): The request could not be understood or was missing required parameters.
+401 (Unauthorized)
+403 (Forbidden)
+404 (Not Found)
+
+500 (Internal Server Error): A generic error message indicating a server problem.
+502 (Bad Gateway): The server, while acting as a gateway or proxy, received an invalid response from the upstream server.
+503 (Service Unavailable): The server is currently unable to handle the request, typically due to overloading or maintenance.
+504 (Gateway Timeout): The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server.
+</pre>
+
+89. Authentication & Authorization in Django?
+<pre>
+Django provides build-in Authentication, along with Authentication it also provide authorization like users, groups & permissions etc
+</pre>
+
+
+90. What are the files gets created when we create new project and new app?
+<pre>
+project: init.py, settings.py, asgi.py, wsgi.py, urls.py
+app: views.py, models.py, init.py, tests.py, admin.py, apps.py
+
+`__init__.py`: In Django, the __init__.py file is a special file that indicates to Python that the directory
+containing it should be considered a Python package or module.
+
+asgi.py:
+The asgi.py file in Django is used for running Django applications with ASGI (Asynchronous Server Gateway Interface) servers.
+ASGI is a specification for asynchronous web servers and frameworks, which allows Django to handle asynchronous operations,
+such as handling WebSocket connections, long polling, and other non-blocking tasks.
+
+See old directory for answer.
+</pre>
+
+91. What is template inheritance?
+<pre>
+
+</pre>
 
 <b>DRF</b>
+1. Difference between put and patch?
+2. What is serializer and deserializer?
+3. What is cors?
+4. Authentication in DRF?
+5. Authorization/Permission in DRF?
+6. What is JWT, What is access and refresh token?
+7. Routers in DRF?
+8. Difference in APIView & ViewSet?
+9. Difference in GenericAPIViewSet & GenericViewSet?
+
 
 
 # Decorators, kafka, ORM, class & methods, DRF

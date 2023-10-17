@@ -660,7 +660,7 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin (for development
 # CORS_ALLOWED_ORIGINS = ['https://example.com', 'https://another-domain.com']
 </pre>
 
-<b>Django</b>
+# Django Interview questions with answer
 1. Meta class in django?
 <pre>
 1. Meta class provides the meta data about the class.
@@ -1671,7 +1671,7 @@ See old directory for answer.
 
 </pre>
 
-<b>DRF</b>
+# DRF Interview questions with answer
 1. Difference between put and patch?
 2. What is serializer and deserializer?
 3. What is cors?

@@ -1710,11 +1710,6 @@ such as handling WebSocket connections, long polling, and other non-blocking tas
 See old directory for answer.
 </pre>
 
-91. What is template inheritance?
-<pre>
-
-</pre>
-
 92. How to make query fast, give analogy between all(), selected_related() and iterator().
 <pre>
 all():

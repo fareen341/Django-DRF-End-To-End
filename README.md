@@ -1785,7 +1785,8 @@ cross_res = [i*j for i in a for j in b]
 from itertools import product
 cross_join_result = list(product(books, authors))
 
-4. To do `LEFT JOIN`, `OUTER JOIN` or Other join which ORM does not support then we can use Pandas for that:
+4. To do `LEFT JOIN`, `OUTER JOIN` or Other join which ORM does not support
+then we can use Pandas for that or use the raw sql query:
 
 import pandas as pd
 from BlogApp.models import Book, Author

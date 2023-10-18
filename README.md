@@ -270,6 +270,8 @@ class People(models.Model):
 
 # we cannot give more fields like in above abstract example of salary
 # proxy models should not have their own fields; they should only inherit fields and behavior from the base model.
+# whenever we create Employee object, it'll also get created in Person too, vice versa is not true.
+# will create one to one relation between both table.
 class Employee(People):
     class Meta:
         proxy = True
@@ -277,7 +279,8 @@ class Employee(People):
 <b>Multi-Table</b>
 # unlike proxy we can add other fields in multi-table, both parent and child will have different table.
 # So Employee will link to parent People via Foreign key 
-# whenever we create Employee object, it'll also get created in Person too
+# whenever we create Employee object, it'll also get created in Person too, vice versa is not true.
+# will create one to one relation between both table.
 class People(models.Model):
     name = models.CharField(max_length=200)
     age = models.IntegerField()

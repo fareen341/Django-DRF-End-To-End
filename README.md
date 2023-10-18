@@ -1473,6 +1473,7 @@ Django support both database & cache like redis and memcached caching strategies
 </pre>
 
 66. What is Django Field Class?
+66. Describe Django Field Class types? 
 <pre>
 CharField, DecimalField, TextField, DateField, and BooleanField are all field class.
 </pre>
@@ -1536,11 +1537,6 @@ template path info, broker info if we use celery.
 <pre>
 A CharField is used to store a relatively short, fixed-length string.
 A TextField is used for storing longer, unstructured text data.
-</pre>
-
-74. Describe Django Field Class types?
-<pre>
-See above
 </pre>
 
 75. What is the usage of "django-admin" and "manage.py"?

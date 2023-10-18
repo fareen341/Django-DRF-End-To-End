@@ -1635,8 +1635,9 @@ class Book(models.Model):
     version = models.CharField(max_length=13)
     price = models.CharField(max_length=13)
 
-1. Group by author, eg: author fareen, wrote 8 books.
-2. Group by author, eg: author fareen, wrote 2 books of version 1, and 6 books of version 3.
+1. Get all the Books count by author.
+2. Get all the Books count by author and verision. 
+Like Fareen has written 5 books of java of version 1, and 2 books of java with version3 & 3 books of python with version 1 and so on.
 3. Fetch all the records of book along with there author, from Book table.
 4. Fetch all the record of book along with there author from Author table.
 5. Get a single record of Book.

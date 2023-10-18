@@ -247,53 +247,50 @@ Instead do the changes in the models file itself and do makemigrations and migra
    iii. Review with team members before applying migrate on production db. </br>
 
 # Inheritance in django models.
-1. Abstract base class inheritance.
 <pre>
-1. We use this when we want a common class as in, in school db name and age will be common.
-2. It'll become abstract base class when we write abstract = True.
-3. No table will be created for abstract base class.
+<b>Abstract</b>
+# This is common class, we cannot create object of this class also cant register it on admin
+# No db table would be created
+class People(models.Model):
+    name = models.CharField(max_length=200)
+    age = models.IntegerField()
 
-Example:
-Parent class
+    class Meta:
+        abstract = True
 
-class CommonInfo(models.Model):
-	name = models.CharField(max_length = 70)
-	age = models.IntegerField
-	
-	class Meta:
-		abstract = True
+class Employee(People):
+    salary = models.IntegerField()
 
-Child class
+<b>Proxy</b>
+# This is like normal inheritance
+# Db table will be created
+class People(models.Model):
+    name = models.CharField(max_length=200)
+    age = models.IntegerField()
 
-class Student(CommonInfo):
-	fees = models.IntegerField()
-</pre>
+# we cannot give more fields like in above abstract example of salary
+# proxy models should not have their own fields; they should only inherit fields and behavior from the base model.
+class Employee(People):
+    class Meta:
+        proxy = True
 
-2. Proxy Model.</br>
-i. Proxy Model and Abstract class both are same, but the main difference is in there concept. Use abstract class when we want to have common fields for multiple tables. Use proxy model when we want to inherit functionality of parent to child, it does not follow concept like use it for common fields, instead it is basically inheritance.  </br>
-ii. Both the parent and child class share the same database table.  </br>
-iii. It become proxy when we give proxy = True. </br>
-iv. The class which have proxy = True or abstract = True, there table won't be created.</br>
+<b>Multi-Table</b>
+# unlike proxy we can add other fields in multi-table, both parent and child will have different table.
+# So Employee will link to parent People via Foreign key 
+# whenever we create Employee object, it'll also get created in Person too
+class People(models.Model):
+    name = models.CharField(max_length=200)
+    age = models.IntegerField()
 
-3. Multi-table Inheritance
-<pre>
-1. The structure of this is same as abstract, here both will have seperate database table.
-2. The parent and child will maintain one to one relation.
-3. Passport table and person table both will have one to one relation.
-Example:
+class Employee(People):
+    salary = models.IntegerField()
 
+So:
+$ Employee.objects.all().values()[0]
+{'id': 3, 'name': 'Fareen', 'age': 23, 'people_ptr_id': 3, 'salary': 3657}
 
-Parent class 
-
-class PersonDetail(models.Model):
-	name = models.CharField(max_length = 70)
-	age = models.InetegerField()
-
-
-Child class
-
-class PassportDetail(PersonDetails):
-	passport_no = models.IntegerField()
+$ People.objects.filter(id=3).values()
+<QuerySet [{'id': 3, 'name': 'Fareen', 'age': 23}]>
 </pre>
 
 # Django Generic View

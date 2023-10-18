@@ -1781,5 +1781,15 @@ null = True	# in db "NULL" will be saved in db .
 9. Difference in GenericAPIViewSet & GenericViewSet?
 
 
+# SQL
+# Joins
+<pre>
+left: 
+right:
+cross: it'll be table A x table B, and the result will be records of table A x table B
+inner: all data from left, matching data from right 
+outer: matching data from both, its like union
+</pre>
+
 
 # Decorators, kafka, ORM, class & methods, DRF

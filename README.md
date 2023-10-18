@@ -1694,6 +1694,33 @@ See old directory for answer.
 
 </pre>
 
+92. How to make query fast, give analogy between all(), selected_related() and iterator().
+<pre>
+all():
+Book.objects.all("author__name")                : join again and again for every data
+for i in qs:
+    # running join for data 1
+    # running join for data 2
+
+selected_related()
+Book.objects.selected_related("author__name")   : join once and load data into memory
+for i in qs:
+    # data is loaded into the memory
+    # no load onto the database
+    # not fast for big data, to make it fast use Iterator chunk
+
+Iterator():
+for i in qs.iterator():
+    # load the data in chunk of 200
+    # make result faster
+    # this is like a typical electric generator, store electricity and we can generat electricity when needed.
+
+
+Same for prefetch_related also:
+Author.objects.all("book__title")
+Author.objects.prefetch_related("book__title")
+<pre>
+
 # DRF Interview questions with answer
 1. Difference between put and patch?
 2. What is serializer and deserializer?

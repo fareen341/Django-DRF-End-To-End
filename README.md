@@ -1618,9 +1618,31 @@ at web server level and continue.
 
 </pre>
 
-86. What is a QuerySet?
+86. What is a QuerySet? In the given model write queryset for following?
 <pre>
-See above
+What is a QuerySet: See above
+
+In the given model write queryset for following, There is Book & Author database table, Find:
+Consider thr bewlo model:
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    bio = models.TextField()
+
+class Book(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, default="NA")
+    version = models.CharField(max_length=13)
+    price = models.CharField(max_length=13)
+
+1. Group by author, eg: author fareen, wrote 8 books.
+2. Group by author, eg: author fareen, wrote 2 books of version 1, and 6 books of version 3.
+3. Fetch all the records of book along with there author, from Book table.
+4. Fetch all the record of book along with there author from Author table.
+5. Get a single record of Book.
+6. Get a multiple record of Book.
+7. Get the record of Book which is not written by Fareen and and price is less than 500, using exclude as well as Q.
+8. Get the maximum price of the book which is written by Fareen.
 </pre>
 
 87. Are Django signals asynchronous?

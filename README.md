@@ -1740,7 +1740,7 @@ for i in qs.iterator():
 Same for prefetch_related also:
 Author.objects.all("book__title")
 Author.objects.prefetch_related("book__title")
-<pre>
+</pre>
 	
 93. What are the parameters of models?
 <pre>
@@ -1767,6 +1767,44 @@ name = models.CharField(
 <pre>
 blank = True	# on ui accept blank value, but nothing given for null so blank space will be saved in db.
 null = True	# in db "NULL" will be saved in db .
+</pre>
+
+95. Different types of join in ORM?
+<pre>
+For sql join see below SQL joins.
+
+1. By default in django ORM does `INNER JOIN`, i.e join of column which matches like `emp.id = dept.id`.
+2. To do `CROSS JOIN`,:
+a = Book.objects.all()
+b = Author.objects.all()
+
+# avoid using
+cross_res = [i*j for i in a for j in b]	
+
+# must use for cross join	
+from itertools import product
+cross_join_result = list(product(books, authors))
+
+4. To do `LEFT JOIN`, `OUTER JOIN` or Other join which ORM does not support then we can use Pandas for that:
+
+import pandas as pd
+from BlogApp.models import Book, Author
+
+# Get your data from Django models
+books = Book.objects.values()
+authors = Author.objects.values()
+
+# Create DataFrames from the QuerySets
+df_books = pd.DataFrame.from_records(books)
+df_authors = pd.DataFrame.from_records(authors)
+
+# Perform an outer join using Pandas
+result = pd.merge(df_books, df_authors, left_on='author_id', right_on='id', how='outer')
+
+# If you want to convert the result back to a QuerySet, you can do it manually
+result_dict = result.to_dict(orient='records')
+
+# Now result_dict contains a list of dictionaries that you can use like a QuerySet
 </pre>
 
 # DRF Interview questions with answer

@@ -1787,7 +1787,7 @@ null = True	# in db "NULL" will be saved in db .
 left: 
 right:
 cross: it'll be table A x table B, and the result will be records of table A x table B
-inner: all data from left, matching data from right 
+inner: matching data only. 
 outer: matching data from both, its like union
 </pre>
 

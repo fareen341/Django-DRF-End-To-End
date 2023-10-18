@@ -275,6 +275,7 @@ class People(models.Model):
 class Employee(People):
     class Meta:
         proxy = True
+	ordering = ['last_name', 'first_name']
 
 <b>Multi-Table</b>
 # unlike proxy we can add other fields in multi-table, both parent and child will have different table.
@@ -294,6 +295,13 @@ $ Employee.objects.all().values()[0]
 
 $ People.objects.filter(id=3).values()
 <QuerySet [{'id': 3, 'name': 'Fareen', 'age': 23}]>
+
+
+<b>So the difference in proxy and multitable is we can give extra column in multi-table whereas not possible in proxy,
+proxy is basically used when we want to modify its functionality like in above i did ordering
+Altho parent and child is same but child will have extra functionality</b>
+no new database table is created; both the parent model and the proxy model share the same database table. 
+While the database structure is the same, you can indeed add different functionality to the parent and proxy models, allowing them to behave differently.
 </pre>
 
 # Django Generic View

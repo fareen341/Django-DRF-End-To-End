@@ -1754,7 +1754,15 @@ blank = True	# on ui accept blank value, but nothing given for null so blank spa
 null = True	# in db "NULL" will be saved in db .
 </pre>
 
-95. Different types of join in ORM?
+95. What is migration management command? </br>
+Difference between makemigration and migrate? </br>
+How to undo a migration?</br>
+How to show migrations file?</br>
+<pre>
+See above
+</pre>
+
+97. Different types of join in ORM?
 <pre>
 For sql join see below SQL joins.
 

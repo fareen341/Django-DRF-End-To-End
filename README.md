@@ -1417,6 +1417,7 @@ path("home/", HomeView.as_view(), name="home")
 </pre>
 
 61. Does Django support multiple-column primary keys? If not what we can use to have that functionality?
+61. Write a multi-column index?
 <pre>
 No, django does not support multiple-column primary keys, instead we use unique_together for this requirement.
 
@@ -1426,6 +1427,18 @@ class Person(models.Model):
 
     class Meta:
         unique_together = ('first_name', 'last_name')
+
+<b>Write a multi-column index</b>
+Accept list of tuple
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30, db_index=True)
+    last_name = models.CharField(max_length=30, db_index=True)
+
+    class Meta:
+        index_together = [
+            ('first_name', 'last_name'),
+        ]
 </pre>
 
 62. How can you see raw SQL queries running in Django?
@@ -1720,6 +1733,33 @@ Same for prefetch_related also:
 Author.objects.all("book__title")
 Author.objects.prefetch_related("book__title")
 <pre>
+	
+93. What are the parameters of models?
+<pre>
+def name_validation(name):
+    if name.Startswith("s"):
+        raise InvalidNameException
+
+name = models.CharField(
+    max_length=100, blank=True,
+    null=True,
+    default='',
+    editable=True,
+    choices=NAME_CHOICES,
+    verbose_name='Full Name',
+    help_text='Enter your full name',
+    unique=True,
+    db_index=True
+    db_column=db_column_name,
+    validators=[name_validation]           # accept list of validations
+    )
+</pre>
+
+94. Difference between (blank = True) and (null = True), (blank = True, null = True).
+<pre>
+blank = True	# on ui accept blank value, but nothing given for null so blank space will be saved in db.
+null = True	# in db "NULL" will be saved in db .
+</pre>
 
 # DRF Interview questions with answer
 1. Difference between put and patch?

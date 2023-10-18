@@ -790,12 +790,6 @@ TIME_ZONE = 'America/New_York'
 python manage.py migrate
 </pre>
 
-
-14. Why to use template inheritence ?
-<pre>
-
-</pre>
-
 15. Does django have a loosely coupled architecture ? Explain the same.
 <pre>
 Django has a loosely coupled architecture. It's designed with modularity and flexibility in mind, allowing its components to be used independently,

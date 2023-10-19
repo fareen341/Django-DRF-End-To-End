@@ -668,22 +668,6 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin (for development
 
 # Complete DRF API Example
 <pre>
-class Author(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.IntegerField()
-    bio = models.TextField()
-
-class Book(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200, default="NA")
-    version = models.CharField(max_length=13)
-    price = models.CharField(max_length=13, db_index)
-
-
-
-
-1. How to create a DRF project?
-<pre>
 1. pip install django-rest_framework
 2. write in installed apps: rest_framework
 3. migrate
@@ -780,7 +764,6 @@ urlpatterns = [
 1. Along with authentication we must give permission also, then only it'll work.
 2. To get login button in DRF itself we should give 3rd line of urls.py
 </b>
-</pre>
 </pre>
 
 # Django Interview questions with answer

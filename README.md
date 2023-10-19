@@ -668,6 +668,123 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin (for development
 # CORS_ALLOWED_ORIGINS = ['https://example.com', 'https://another-domain.com']
 </pre>
 
+# Complete DRF API Example
+<pre>
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    bio = models.TextField()
+
+class Book(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, default="NA")
+    version = models.CharField(max_length=13)
+    price = models.CharField(max_length=13, db_index)
+
+
+
+
+1. How to create a DRF project?
+<pre>
+1. pip install django-rest_framework
+2. write in installed apps: rest_framework
+3. migrate
+
+4. create models:
+class Employee(models.Model):
+    name = models.CharField(max_length=200)
+    age = models.IntegerField()
+    salary = models.IntegerField()
+
+5. create serializers.py:
+from rest_framework import serializers
+from .models import Employee
+
+class EmployeeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+6. create views:
+from django.shortcuts import render
+from .models import Employee
+from .serializers import EmployeeSerializer
+from rest_framework.response import Response
+from rest_framework import status, viewsets
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
+class EmployeeViewSet(viewsets.ViewSet):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        stu=Employee.objects.all()
+        serializer=EmployeeSerializer(stu, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        id=pk
+        if id is not None:
+            stu=Employee.objects.get(id=id)
+            serializer=EmployeeSerializer(stu)
+            return Response(serializer.data)
+
+    def create(self, request):
+        serializer=EmployeeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg':'Data Created'},status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk):
+        id=pk
+        stu=Employee.objects.get(pk=id)
+        serializer=EmployeeSerializer(stu,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg':'Compltete Data Updated'})
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, pk):
+        id=pk
+        stu=Employee.objects.get(pk=id)
+        serializer=EmployeeSerializer(stu,data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'msg':'Partial Data Updated'})
+            return Response(serializer.errors)
+
+    def destroy(self, request, pk):
+        id=pk
+        stu=Employee.objects.get(pk=id)
+        stu.delete()
+        return Response({'msg':'Data Deleted'})
+
+7. create router:
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from BlogApp.views import EmployeeViewSet
+
+router = DefaultRouter()
+
+router.register(r'employee', EmployeeViewSet, basename='employee')
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('auth/',include('rest_framework.urls',namespace='rest_framework'))             # will provide login/logout functionality
+]
+
+<b>NOTE: </br>
+1. Along with authentication we must give permission also, then only it'll work.
+2. To get login button in DRF itself we should give 3rd line of urls.py
+</b>
+</pre>
+</pre>
+
 # Django Interview questions with answer
 1. Meta class in django?
 <pre>

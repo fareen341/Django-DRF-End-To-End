@@ -1,6 +1,4 @@
-
-# This repository contains the things to learn for python developer job, read all below stuff is enpugh, foo python, django and DRF.
-
+# Django
 # Django ORM
 1. Group By: Get count of views by views, meaning group by using views:
 <pre>

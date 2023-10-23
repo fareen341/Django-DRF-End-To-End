@@ -1675,6 +1675,13 @@ Iterator breaks the data into chunks, it fetches a small number of rows at a tim
 
 for item in queryset.iterator():
     # will load chunk_size data
+
+<b>Whenever we do just the ORM it does not hit the database, until we manually do for loop or filter:</b>
+bk_obj = Book.objects.select_related('title', 'author__name')
+bk_obj = Book.objects.all()
+
+Both query will hit the database when data is needed, so that is why when we 
+use iterator in for loop it hit the database at that time and get the data into chunks.
 </pre>
 
 79. How does Django process a request?

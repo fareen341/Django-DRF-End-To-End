@@ -6,7 +6,7 @@
   queryset = Blog.objects.values('views').annotate(view_count=Count('views'))
 
   #group by name and views, whatever we put in values() that becomes group by
-  queryset = Blog.objects.values('views', 'name').annotate(view_count=Count('views'))
+  queryset = Blog.objects.values('views', 'name').annotate(view_count=Count('id'))
 
 <b>Another use of annotate</b>
 Annotate is also used to do calculation on database fields.

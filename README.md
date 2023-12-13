@@ -1437,8 +1437,19 @@ GROUP BY "BlogApp_book"."author_id", "BlogApp_book"."version"`
 Example:
 `Aggregrate`:
 
-from django.db.models import Min, Max, Count, Sum
+from django.db.models import Min, Max, Count, Sum, Avg, StdDev, Variance, ExpressionWrapper, F, FloatField
 obj = Price.objects.aggregate(price_min = Min('price'))
+
+<b>CUSTOM AGGREGATE</b>
+Do the addition of two database fields
+
+Books.objects.aggregate(
+    add = ExpressionWrapper(
+        F('actual_price') + F('discount_price')
+    ), 
+    output_field = FloatField()
+)
+
 </pre>
 
 50. How to filter multiple fields in a filter?

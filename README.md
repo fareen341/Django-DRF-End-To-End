@@ -1984,6 +1984,13 @@ See above.
 
 # DRF Interview questions with answer
 1. Difference between put and patch?
+<pre>
+PUT: When you send a PUT request to a resource endpoint, you are expected to provide the complete representation of the 
+resource in the request payload.
+PATCH: Unlike PUT, a PATCH request only includes the changes that need to be applied to the existing resource, 
+rather than the complete representation
+</pre>
+
 2. What is serializer and deserializer?
 3. What is cors?
 4. Authentication in DRF?

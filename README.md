@@ -1247,6 +1247,18 @@ $ st.course.remove(remove_course)
 clear: to remove entire course
 $ st = Student.objects.get(pk=1)
 $ st.course.clear()
+
+
+<b>Remember all methods add, set, remove takes list of values. And if we want to use filter we need to use astrick(*).</b>
+# Using get 
+$ obj = Student.objects.get(pk=1)
+$ courses = [Course.objects.get(pk=2), Course.objects.get(pk=3))
+$ obj.course.add(*courses)
+
+# Using filter
+$ obj = Student.objects.get(pk=1)
+$ courses = Course.objects.filter(name__in=["python", "java"])
+$ obj.course.add(*courses)
 </pre>
 
 44. How to do CRUD operations in Queryset?

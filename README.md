@@ -1959,6 +1959,11 @@ result_dict = result.to_dict(orient='records')
 # Now result_dict contains a list of dictionaries that you can use like a QuerySet
 </pre>
 
+98. Give another use case of annotate besides group_by?
+<pre>
+See above.
+</pre>
+
 # DRF Interview questions with answer
 1. Difference between put and patch?
 2. What is serializer and deserializer?

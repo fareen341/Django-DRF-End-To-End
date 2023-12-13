@@ -1582,8 +1582,27 @@ Django support both database & cache like redis and memcached caching strategies
 
 </pre>
 
-65. What is mixin?
+65. What is mixin?<br>
+Just like decorators are used for extending the functionality of a function, we can use mxin to extend the functionality of a class. 
 <pre>
+Its like simple inheritance:
+
+class LoggingMixin:
+    def log(self, message):
+        print(f"Log: {message}")
+
+class MyClass(LoggingMixin):
+    def some_method(self):
+        self.log("This is a log message.")
+
+obj = MyClass()
+obj.some_method()
+
+Django Exaple:
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class MyProtectedView(LoginRequiredMixin, View):
+    # Your view logic here
 
 </pre>
 

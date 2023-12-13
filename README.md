@@ -7,6 +7,17 @@
 
   #group by name and views, whatever we put in values() that becomes group by
   queryset = Blog.objects.values('views', 'name').annotate(view_count=Count('views'))
+
+<b>Another use of annotate</b>
+Annotate is also used to do calculation on database fields.
+Consider example:
+
+Books.objects.annotate(
+    actual_price = ExpressionWrapper(
+        F('total_price') - F('discount_price')
+    ),
+    output_field = FloatField()
+).filter(actual_price__gt=200)
 </pre>
 
 2. Join: all(), select_related(), prefetch_related()

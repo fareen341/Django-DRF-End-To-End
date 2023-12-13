@@ -64,7 +64,8 @@ filter() is used to fetch multiple records and get() is used to retrive single r
 1. extra methor:
 <pre>queryset = MyModel.objects.extra(select={"custom_field": "SELECT ... FROM ..."})</pre>
 
-2. Using F() expressions:
+2. Using F() expressions:<br>
+In Django, an F() expression is a way to reference a database field and perform operations on its values at the database level. 
 <pre>
 from django.db.models import F
 queryset = MyModel.objects.filter(field1=F('field2'))

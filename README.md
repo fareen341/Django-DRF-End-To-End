@@ -353,6 +353,7 @@ Serializers convert complex Python data types (such as Django model instances) i
 # Routers:
 1. In Django Rest Framework (DRF), routers are a convenient way to automatically generate URL patterns for your API views, particularly for ViewSets. Routers simplify the process of defining and organizing URL patterns for CRUD (Create, Read, Update, Delete) operations on your API resources. DRF includes a built-in SimpleRouter class that you can use to create default URL patterns for your ViewSets. Here's how routers work in DRF.
 2. We have DefaultRouter 7 SimpleRouter, both have same functionality.
+3. In Django REST framework (DRF), the default router is a convenient tool provided by DRF to simplify the process of defining URL patterns for your API views. It automatically generates URL patterns for the standard CRUD (Create, Retrieve, Update, Delete) operations based on your views and viewsets.
 
 # Authenticatios - DRF provides:
 1) BasicAuthentication: uname and pswd(not for prod env).

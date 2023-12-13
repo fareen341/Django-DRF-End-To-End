@@ -638,21 +638,27 @@ class MyViewSet(viewsets.ModelViewSet):
 On postman it'll look like this: GET /api/books/?ordering=title sorts books by title in ascending order. And use minus for descending, same for filter and search too on postman.
 <pre>
 Example: 
-from django_filters.rest_framework import DjangoFilterBackend, SearchFilter
+<b>For it to work we need:</b>
+Install and include in installed_apps:
+pip install django-filter
+
+
+
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+
 
 class StudentList(ListAPIView):
 	queryset=Student.objects.all()
 	serializer_class=StudentSerializer
+	filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 	# filter option
-	filter_backends = [DjangoFilterBackend]
 	filterset_fields = ['city']
 
 	# search option
-	filter_backends = [SearchFilter]
 	search_fields = ['name','city']	
 	
 	# ordering option
-	filter_backends = [OrderingFilter]
 	ordering_fields = ['city']
 </pre>
 

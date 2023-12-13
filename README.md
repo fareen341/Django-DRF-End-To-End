@@ -1989,6 +1989,8 @@ PUT: When you send a PUT request to a resource endpoint, you are expected to pro
 resource in the request payload.
 PATCH: Unlike PUT, a PATCH request only includes the changes that need to be applied to the existing resource, 
 rather than the complete representation
+
+In-short: in put request we need to pass all fileds in payload,
 </pre>
 
 2. What is serializer and deserializer?

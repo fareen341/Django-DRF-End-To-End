@@ -1931,3 +1931,11 @@ outer: matching data from both, its like union
 
 
 # Decorators, kafka, ORM, class & methods, DRF
+
+
+# Extra - will change afterwords
+1. ExpressionWrapper:<br>
+It allows you to perform complex operations on fields at the database level, which can be more efficient than fetching data into Python code and then performing the operations.<br>
+<pre>
+
+</pre>

@@ -2007,3 +2007,15 @@ It allows you to perform complex operations on fields at the database level, whi
 <pre>
 
 </pre>
+
+2. Between operator in django orm.
+<pre>
+from datetime import date
+
+# Define your date range
+start_date = date(2023, 1, 1)
+end_date = date(2023, 12, 31)
+
+# Query the database
+result_queryset = YourModel.objects.filter(date_field__range=(start_date, end_date))
+</pre>

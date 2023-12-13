@@ -1328,62 +1328,29 @@ book.authors.add(author_1, author_2)
 
 43. Difference between User, AbstractUser and AbstractBaseUser models in Django?
 <pre>
-<b>User</b>
-Adding user have one function, which is create_user:
+When inheriting User model we get one-to-one relation of User table along with User table fields, 
+where as in AbstractUser we dont get one-to-one field instead along with User table fields we get extra field in the same table.
+AbstractBaseUser is used to create authorization from scratch.
 
+Example of AbstractUser:
 from django.contrib.auth.models import User
-new_user = User.objects.create_user(username='john_doe', password='password123', email='john@example.com')
+from django.db import models
 
-
-<b>Extending the Built-In User Model:</b>
-from django.contrib.auth.models import User
-
-class CustomUserModel(User):
+class CustomUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField()
-
-Note: above will create an entirely new model `CustomUserModel` where we have to give foreign key of user
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
 
-Use below option to entirely create custom model for user
-<b>AbstractUser</b>
-Subclassing AbstractUser to add custom fields and methods to the default user model.
-
-Example:
+Example of AbstractUser:
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class CustomUser(AbstractUser):
-    age = models.IntegerField()
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
+In settings.py:
+AUTH_USER_MODEL = 'your_app.CustomUser'
 
-<b>AbstractBaseUser</b>
-Creating a completely custom user model using AbstractBaseUser to define your own authentication system.
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
-class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
-        if not email:
-            raise ValueError('The Email field must be set')
-        email = self.normalize_email(email)
-        user = self.model(username=username, email=email)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-class CustomUser(AbstractBaseUser):
-    username = models.CharField(unique=True, max_length=30)
-    email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    # Add your custom fields
-
-    objects = CustomUserManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
-
-    def __str__(self):
-        return self.email
 </pre>
 
 44. How to inherit User model in django?

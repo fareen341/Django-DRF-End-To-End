@@ -1281,8 +1281,19 @@ In above instead of providing name, we give student_name queryset. Rest all is s
 <pre>
 Same as above, just give foreign key queryset instead of name:
 
+We need to create the Book(parent) object first and then add child
+
 Adding:
-Book(title="Python with django", author=Author.objects.get(pk=2), version="1.1").save()
+# Creating a Book instance
+book = Book(title="Python with Django", version="1.1")
+book.save()  # Save the book instance
+
+# Retrieving authors with primary keys 2 and 4
+author_1 = Author.objects.get(pk=2)
+author_2 = Author.objects.get(pk=4)
+
+# Adding authors to the Book instance
+book.authors.add(author_1, author_2)
 </pre>
 
 43. Difference between User, AbstractUser and AbstractBaseUser models in Django?

@@ -1253,12 +1253,12 @@ $ st.course.clear()
 # Using get 
 $ obj = Student.objects.get(pk=1)
 $ courses = [Course.objects.get(pk=2), Course.objects.get(pk=3))
-$ obj.course.add(*courses)
+$ obj.course.add(courses)
 
 # Using filter
 $ obj = Student.objects.get(pk=1)
 $ courses = Course.objects.filter(name__in=["python", "java"])
-$ obj.course.add(*courses)
+$ obj.course.add(*courses)		# compulsory use artrick
 </pre>
 
 44. How to do CRUD operations in Queryset?

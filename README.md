@@ -347,6 +347,9 @@ This combination provides a balance between security, performance, and scalabili
 # DRF
 Github: https://github.com/encode/django-rest-framework/tree/master/rest_framework
 
+# Django: 
+https://github.com/django/django/tree/main/django/contrib/admin
+
 # Serializers & Deserializers:
 Serializers convert complex Python data types (such as Django model instances) into a format that can be easily rendered into JSON, XML, or other content types. Deserializers is vice versa.
 
